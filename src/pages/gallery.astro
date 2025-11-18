@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AdvancedGallery from '../components/AdvancedGallery.astro';
+
+// Gallery images - replace with actual images
+const galleryImages = [
+  // Training Spaces
+  { src: "/images/gallery/training-1.jpg", alt: "Main training floor", category: "Training", title: "Main Training Floor", description: "3,000 sq ft of open training space" },
+  { src: "/images/gallery/training-2.jpg", alt: "Strength area", category: "Training", title: "Strength Area", description: "Olympic platforms and power racks" },
+  { src: "/images/gallery/training-3.jpg", alt: "Functional fitness zone", category: "Training", title: "Functional Zone", description: "Turf area for dynamic movements" },
+  { src: "/images/gallery/training-4.jpg", alt: "Recovery area", category: "Training", title: "Recovery Area", description: "Dedicated space for mobility and recovery" },
+  
+  // DOJO Labs
+  { src: "/images/gallery/labs-1.jpg", alt: "Open workspace", category: "Labs", title: "Open Workspace", description: "Collaborative hot desk area" },
+  { src: "/images/gallery/labs-2.jpg", alt: "Private offices", category: "Labs", title: "Private Offices", description: "Quiet spaces for focused work" },
+  { src: "/images/gallery/labs-3.jpg", alt: "Meeting rooms", category: "Labs", title: "Meeting Rooms", description: "Professional meeting spaces" },
+  { src: "/images/gallery/labs-4.jpg", alt: "Event space", category: "Labs", title: "Event Space", description: "Versatile space for workshops and presentations" },
+  
+  // Community
+  { src: "/images/gallery/community-1.jpg", alt: "Member event", category: "Community", title: "Member Events", description: "Regular networking and social gatherings" },
+  { src: "/images/gallery/community-2.jpg", alt: "Group training", category: "Community", title: "Group Training", description: "Building strength together" },
+  { src: "/images/gallery/community-3.jpg", alt: "Workshop session", category: "Community", title: "Workshops", description: "Learning from industry leaders" },
+  { src: "/images/gallery/community-4.jpg", alt: "Networking event", category: "Community", title: "Networking", description: "Meaningful connections, not small talk" },
+  
+  // Facilities
+  { src: "/images/gallery/facility-1.jpg", alt: "Entrance", category: "Facility", title: "DOJO Entrance", description: "Where transformation begins" },
+  { src: "/images/gallery/facility-2.jpg", alt: "Lounge area", category: "Facility", title: "Member Lounge", description: "Relax and connect between sessions" },
+  { src: "/images/gallery/facility-3.jpg", alt: "Locker rooms", category: "Facility", title: "Locker Rooms", description: "Premium amenities and privacy" },
+  { src: "/images/gallery/facility-4.jpg", alt: "Exterior", category: "Facility", title: "Building Exterior", description: "3508 S Manhattan Ave, Tampa" },
+];
+---
+
+<Layout title="Gallery - DOJO Tampa">
+  <!-- Hero Section -->
+  <section class="bg-dojo-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4">Gallery</h1>
+      <p class="text-xl text-dojo-light max-w-3xl">
+        Experience DOJO Tampa through images of our spaces, events, and community.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Advanced Gallery -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <AdvancedGallery 
+        images={galleryImages}
+        showFilter={true}
+      />
+    </div>
+  </section>
+
+  <!-- Virtual Tour CTA -->
+  <section class="py-16 bg-dojo-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-inter font-bold text-3xl mb-4">Experience DOJO in Person</h2>
+      <p class="text-xl text-dojo-gray mb-8">
+        Pictures only tell part of the story. The energy, community, and purpose of DOJO must be experienced firsthand.
+      </p>
+      <a href="/#inquiry" class="bg-dojo-red text-white px-8 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-block">
+        Schedule a Visit
+      </a>
+    </div>
+  </section>
+</Layout>
+

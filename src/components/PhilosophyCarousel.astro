@@ -1,0 +1,163 @@
+---
+// Philosophy concepts that define DOJO
+const concepts = [
+  {
+    japanese: "変革",
+    romanji: "Henkaku",
+    english: "Transformation",
+    description: "Every journey begins with a decision to change. When you enter DOJO, you commit to transforming not just your body, but your entire approach to excellence."
+  },
+  {
+    japanese: "強さ",
+    romanji: "Tsuyosa",
+    english: "Strength",
+    description: "Physical strength builds mental fortitude. Through deliberate practice and progressive overload, we forge unbreakable will."
+  },
+  {
+    japanese: "均衡",
+    romanji: "Kinkou",
+    english: "Balance",
+    description: "True power comes from harmony - between effort and recovery, individual goals and collective success, ambition and discipline."
+  },
+  {
+    japanese: "共同体",
+    romanji: "Kyoudoutai",
+    english: "Community",
+    description: "Iron sharpens iron. We rise together, pushing each other beyond perceived limits while building bonds that extend far beyond the training floor."
+  },
+  {
+    japanese: "闘志",
+    romanji: "Toushi",
+    english: "Fighting Spirit",
+    description: "The warrior's mindset - unwavering determination in the face of adversity. Every challenge is an opportunity to prove your resolve."
+  },
+  {
+    japanese: "卓越",
+    romanji: "Takuetsu",
+    english: "Excellence",
+    description: "The outcome of consistent practice. Excellence isn't an act but a habit, forged through daily commitment to being better than yesterday."
+  }
+];
+---
+
+<div class="relative max-w-4xl mx-auto">
+  <div class="carousel-container overflow-hidden">
+    <div class="carousel-track flex transition-transform duration-500 ease-in-out">
+      {concepts.map((concept, index) => (
+        <div class="carousel-slide min-w-full px-8" data-slide={index}>
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 text-center">
+            <div class="mb-6">
+              <span class="text-6xl md:text-8xl font-bold text-dojo-red block mb-4">
+                {concept.japanese}
+              </span>
+              <span class="text-lg text-dojo-light italic">
+                {concept.romanji}
+              </span>
+            </div>
+            <h3 class="text-3xl font-inter font-bold mb-4">
+              {concept.english}
+            </h3>
+            <p class="text-lg text-dojo-light max-w-2xl mx-auto">
+              {concept.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <!-- Navigation -->
+  <button 
+    class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
+    aria-label="Previous concept"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+  
+  <button 
+    class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
+    aria-label="Next concept"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+  
+  <!-- Indicators -->
+  <div class="flex justify-center space-x-2 mt-8">
+    {concepts.map((_, index) => (
+      <button 
+        class={`carousel-indicator w-2 h-2 rounded-full transition-all ${
+          index === 0 ? 'bg-dojo-red w-8' : 'bg-white/40'
+        }`}
+        data-slide-to={index}
+        aria-label={`Go to slide ${index + 1}`}
+      ></button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const track = document.querySelector('.carousel-track') as HTMLElement;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevButton = document.querySelector('.carousel-prev');
+  const nextButton = document.querySelector('.carousel-next');
+  const indicators = document.querySelectorAll('.carousel-indicator');
+  
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+  
+  function updateCarousel() {
+    // Update track position
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+      if (index === currentSlide) {
+        indicator.classList.add('bg-dojo-red', 'w-8');
+        indicator.classList.remove('bg-white/40');
+      } else {
+        indicator.classList.remove('bg-dojo-red', 'w-8');
+        indicator.classList.add('bg-white/40');
+      }
+    });
+  }
+  
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }
+  
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+  
+  // Event listeners
+  prevButton?.addEventListener('click', prevSlide);
+  nextButton?.addEventListener('click', nextSlide);
+  
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      currentSlide = index;
+      updateCarousel();
+    });
+  });
+  
+  // Auto-advance carousel
+  setInterval(nextSlide, 6000);
+</script>
+
+<style>
+  @media (max-width: 768px) {
+    .carousel-prev {
+      transform: translateY(-50%) translateX(1rem);
+    }
+    
+    .carousel-next {
+      transform: translateY(-50%) translateX(-1rem);
+    }
+  }
+</style>

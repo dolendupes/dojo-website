@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Sample events to showcase capabilities
+const eventTypes = [
+  {
+    category: "Training",
+    title: "High-Performance Training Sessions",
+    description: "Daily group training designed for peak performers. From strength and conditioning to martial arts and mobility work.",
+    frequency: "Daily",
+    image: "/images/events/training.jpg"
+  },
+  {
+    category: "Networking",
+    title: "Member Mixers",
+    description: "Curated networking events where meaningful connections replace small talk. Build relationships that matter.",
+    frequency: "Monthly",
+    image: "/images/events/networking.jpg"
+  },
+  {
+    category: "Workshops",
+    title: "Executive Workshops",
+    description: "Learn from successful entrepreneurs and industry leaders. Topics range from scaling businesses to optimizing performance.",
+    frequency: "Bi-weekly",
+    image: "/images/events/workshop.jpg"
+  },
+  {
+    category: "Challenges",
+    title: "DOJO Challenges",
+    description: "Quarterly challenges that test physical and mental limits. Build camaraderie through shared struggle and victory.",
+    frequency: "Quarterly",
+    image: "/images/events/challenge.jpg"
+  },
+  {
+    category: "Private Events",
+    title: "Member-Hosted Events",
+    description: "Members can reserve our spaces for private events, from team offsites to product launches.",
+    frequency: "On Request",
+    image: "/images/events/private.jpg"
+  },
+  {
+    category: "Community",
+    title: "Family Events",
+    description: "Building a multi-generational community with events that bring families together.",
+    frequency: "Seasonal",
+    image: "/images/events/family.jpg"
+  }
+];
+---
+
+<Layout title="Events - DOJO Tampa">
+  <!-- Hero Section -->
+  <section class="bg-dojo-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4">Events & Experiences</h1>
+      <p class="text-xl text-dojo-light max-w-3xl">
+        DOJO hosts a curated calendar of events designed to challenge, connect, and elevate our members.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Event Types -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-inter font-bold text-4xl mb-4">What Happens at DOJO</h2>
+        <p class="text-xl text-dojo-gray max-w-3xl mx-auto">
+          From daily training sessions to exclusive networking events, every gathering is designed with intention.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {eventTypes.map((event) => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+              <span>{event.category}</span>
+            </div>
+            
+            <div class="p-6">
+              <span class="inline-block px-3 py-1 text-sm font-semibold text-dojo-red bg-red-50 rounded-full mb-3">
+                {event.frequency}
+              </span>
+              
+              <h3 class="font-inter font-bold text-xl mb-3">{event.title}</h3>
+              <p class="text-dojo-gray">{event.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Philosophy -->
+  <section class="py-20 bg-dojo-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-inter font-bold text-4xl mb-8 text-center">Events with Purpose</h2>
+      
+      <div class="space-y-6 text-lg text-dojo-gray">
+        <p>
+          Every DOJO event serves a purpose beyond the immediate activity. Training sessions build mental resilience alongside physical strength. Networking events create genuine partnerships, not just LinkedIn connections. Workshops deliver actionable insights from practitioners who've actually done the work.
+        </p>
+        
+        <p>
+          We believe in quality over quantity. Our events are carefully curated to bring together the right people at the right time. Whether you're pushing through a workout, sharing insights in a workshop, or connecting at a mixer, you're surrounded by individuals committed to excellence.
+        </p>
+        
+        <p>
+          Members don't just attend events – they help shape them. Your input determines our programming, ensuring that every gathering reflects the collective needs and ambitions of the DOJO community.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Host an Event -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-inter font-bold text-3xl mb-4">Host Your Event at DOJO</h2>
+      <p class="text-xl text-dojo-gray mb-8">
+        DOJO members have access to our event spaces for team gatherings, workshops, product launches, and private celebrations. Our versatile spaces and professional amenities provide the perfect backdrop for memorable events.
+      </p>
+      <a href="/#inquiry" class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
+        Learn More About Membership
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhilosophyCarousel from '../components/PhilosophyCarousel.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+---
+
+<Layout title="DOJO Tampa - Transform Through Strength, Balance, and Community">
+  <!-- Hero with Philosophy Carousel -->
+  <section class="relative bg-dojo-black text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <img src="/images/logos/DOJO_white.svg" alt="DOJO" class="h-16 w-auto mx-auto mb-8" />
+        <h1 class="font-inter font-black text-4xl md:text-6xl mb-4 italic tracking-tight">
+          EVERY REP IS A RITUAL
+        </h1>
+        <p class="text-xl md:text-2xl text-dojo-light max-w-3xl mx-auto">
+          A private collective forging excellence through deliberate practice and shared purpose.
+        </p>
+      </div>
+      
+      <PhilosophyCarousel />
+    </div>
+  </section>
+
+  <!-- Mission: Why, What, How -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="font-inter font-bold text-4xl mb-12 text-center">Our Mission</h2>
+        
+        <div class="space-y-12">
+          <!-- Why -->
+          <div>
+            <h3 class="font-inter font-bold text-2xl mb-4 text-dojo-red">Why We Exist</h3>
+            <p class="text-lg text-dojo-gray leading-relaxed">
+              Success without community is hollow. Tampa's most driven individuals need more than another gym or networking group – they need a place where physical training, mental discipline, and professional ambition converge. DOJO exists because transformation happens when exceptional people challenge each other to be better.
+            </p>
+          </div>
+          
+          <!-- What -->
+          <div>
+            <h3 class="font-inter font-bold text-2xl mb-4 text-dojo-red">What We Do</h3>
+            <p class="text-lg text-dojo-gray leading-relaxed">
+              We create an environment where entrepreneurs, executives, and professionals forge strength together. Through deliberate physical practice, structured challenges, and authentic connection, we build a collective that generates opportunities, partnerships, and lasting impact in Tampa and beyond.
+            </p>
+          </div>
+          
+          <!-- How -->
+          <div>
+            <h3 class="font-inter font-bold text-2xl mb-4 text-dojo-red">How We Do It</h3>
+            <p class="text-lg text-dojo-gray leading-relaxed">
+              By curating a private membership of aligned individuals. By treating every workout as practice for life's greater challenges. By fostering real relationships through shared struggle and victory. By creating spaces – physical, digital, and social – where collaboration naturally emerges.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOJO Labs -->
+  <section class="py-20 bg-dojo-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-inter font-bold text-4xl mb-4">DOJO Labs</h2>
+        <p class="text-xl text-dojo-gray max-w-3xl mx-auto">
+          Where ideas meet execution. Our startup studio and residency program for member ventures.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div>
+          <h3 class="font-inter font-bold text-xl mb-4">Startup Studio</h3>
+          <p class="text-dojo-gray mb-4">
+            DOJO Labs incubates and accelerates member-led ventures. From ideation to execution, we provide the space, connections, and collaborative energy to turn concepts into companies.
+          </p>
+          <ul class="space-y-2 text-dojo-gray">
+            <li class="flex items-start">
+              <span class="text-dojo-red mr-2">•</span>
+              Dedicated workspace and meeting rooms
+            </li>
+            <li class="flex items-start">
+              <span class="text-dojo-red mr-2">•</span>
+              Access to DOJO's network of entrepreneurs and advisors
+            </li>
+            <li class="flex items-start">
+              <span class="text-dojo-red mr-2">•</span>
+              Regular pitch sessions and feedback circles
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-inter font-bold text-xl mb-4">Partner Residency</h3>
+          <p class="text-dojo-gray mb-4">
+            Companies within our extended network maintain a presence at DOJO, creating organic opportunities for collaboration, talent acquisition, and strategic partnerships.
+          </p>
+          <ul class="space-y-2 text-dojo-gray">
+            <li class="flex items-start">
+              <span class="text-dojo-red mr-2">•</span>
+              Hot desk and meeting space access
+            </li>
+            <li class="flex items-start">
+              <span class="text-dojo-red mr-2">•</span>
+              Integration with DOJO member community
+            </li>
+            <li class="flex items-start">
+              <span class="text-dojo-red mr-2">•</span>
+              Cross-pollination of ideas and opportunities
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Preview -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-inter font-bold text-4xl mb-12 text-center">The Space</h2>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {/* Placeholder for images */}
+        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
+          <span>Training Floor</span>
+        </div>
+        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
+          <span>DOJO Labs</span>
+        </div>
+        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
+          <span>Community Space</span>
+        </div>
+        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
+          <span>Recovery Zone</span>
+        </div>
+        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
+          <span>Meeting Rooms</span>
+        </div>
+        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
+          <span>Event Space</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry Section -->
+  <section id="inquiry" class="py-20 bg-dojo-black text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-inter font-bold text-4xl mb-4">Join the Collective</h2>
+        <p class="text-xl text-dojo-light">
+          DOJO membership is by invitation. Share your interest and we'll reach out when opportunities arise.
+        </p>
+      </div>
+      
+      <InquiryForm />
+    </div>
+  </section>
+</Layout>

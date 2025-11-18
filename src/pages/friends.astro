@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Companies in the DOJO network through Matt, Scott, and other members
+const friends = [
+  {
+    name: "vXplor Growth",
+    category: "Business Development",
+    description: "Strategic growth consulting and business development services.",
+    connection: "Founding Partner"
+  },
+  // Add more companies as appropriate
+];
+
+const categories = ["All", "Technology", "Business Development", "Health & Wellness", "Finance", "Real Estate"];
+---
+
+<Layout title="Friends of DOJO - Tampa Business Network">
+  <!-- Hero Section -->
+  <section class="bg-dojo-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4">Friends of DOJO</h1>
+      <p class="text-xl text-dojo-light max-w-3xl">
+        Companies and organizations within arm's reach of the DOJO collective. These businesses are led by members, partners, or close collaborators who share our commitment to excellence.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Network Grid -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Category Filter -->
+      <div class="mb-12">
+        <div class="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <button 
+              class={`px-4 py-2 rounded font-semibold transition-colors ${
+                category === "All" 
+                  ? "bg-dojo-red text-white" 
+                  : "bg-dojo-light text-dojo-black hover:bg-dojo-gray hover:text-white"
+              }`}
+              data-category={category}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Friends Display -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {friends.map((friend) => (
+          <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow" data-category-item={friend.category}>
+            <h3 class="font-inter font-bold text-xl mb-2">{friend.name}</h3>
+            <span class="inline-block px-3 py-1 text-sm font-semibold text-dojo-red bg-red-50 rounded-full mb-3">
+              {friend.category}
+            </span>
+            <p class="text-dojo-gray mb-4">{friend.description}</p>
+            {friend.connection && (
+              <p class="text-sm text-dojo-gray italic">
+                Connection: {friend.connection}
+              </p>
+            )}
+          </div>
+        ))}
+        
+        <!-- Placeholder cards -->
+        <div class="bg-dojo-light rounded-lg p-8 flex items-center justify-center min-h-[200px]">
+          <p class="text-dojo-gray text-center">
+            More friends of DOJO coming soon
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- DOJO Labs Connection -->
+  <section class="py-16 bg-dojo-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-inter font-bold text-3xl mb-4">DOJO Labs Residency</h2>
+      <p class="text-xl text-dojo-gray mb-8">
+        Many of our network companies maintain a presence at DOJO Labs, our startup studio and co-working space. This creates natural opportunities for collaboration and cross-pollination of ideas.
+      </p>
+      <a href="/labs" class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
+        Learn About DOJO Labs
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Category filtering
+  const categoryButtons = document.querySelectorAll('[data-category]');
+  const items = document.querySelectorAll('[data-category-item]');
+  
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      
+      // Update button states
+      categoryButtons.forEach(btn => {
+        btn.classList.remove('bg-dojo-red', 'text-white');
+        btn.classList.add('bg-dojo-light', 'text-dojo-black');
+      });
+      button.classList.remove('bg-dojo-light', 'text-dojo-black');
+      button.classList.add('bg-dojo-red', 'text-white');
+      
+      // Filter items
+      items.forEach(item => {
+        const itemCategory = item.getAttribute('data-category-item');
+        if (category === 'All' || itemCategory === category) {
+          (item as HTMLElement).style.display = 'block';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

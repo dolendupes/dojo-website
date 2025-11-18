@@ -1,0 +1,57 @@
+---
+export interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  author: string;
+  category: string;
+  slug: string;
+  image?: string;
+}
+
+const { title, excerpt, date, author, category, slug, image } = Astro.props;
+
+// Format date
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+  {image && (
+    <a href={`/blog/${slug}`}>
+      <div class="h-48 bg-dojo-gray">
+        <!-- Image would go here -->
+        <div class="h-full flex items-center justify-center text-white">
+          <span class="text-sm">Blog Image</span>
+        </div>
+      </div>
+    </a>
+  )}
+  
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-3">
+      <span class="inline-block px-3 py-1 text-sm font-semibold text-dojo-red bg-red-50 rounded-full">
+        {category}
+      </span>
+      <time class="text-sm text-dojo-gray">{formattedDate}</time>
+    </div>
+    
+    <h3 class="font-inter font-bold text-xl mb-2">
+      <a href={`/blog/${slug}`} class="hover:text-dojo-red transition-colors">
+        {title}
+      </a>
+    </h3>
+    
+    <p class="text-dojo-gray mb-4">{excerpt}</p>
+    
+    <div class="flex items-center justify-between">
+      <span class="text-sm text-dojo-gray">By {author}</span>
+      <a href={`/blog/${slug}`} class="text-dojo-red font-semibold hover:text-red-700 transition-colors">
+        Read More →
+      </a>
+    </div>
+  </div>
+</article>

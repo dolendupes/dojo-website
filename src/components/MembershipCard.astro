@@ -1,0 +1,49 @@
+---
+export interface Props {
+  title: string;
+  price: string;
+  features: string[];
+  ctaText: string;
+  ctaLink: string;
+  highlight?: boolean;
+}
+
+const { title, price, features, ctaText, ctaLink, highlight = false } = Astro.props;
+---
+
+<div class={`bg-white rounded-lg shadow-lg p-8 ${highlight ? 'ring-2 ring-dojo-red transform scale-105' : ''}`}>
+  {highlight && (
+    <div class="bg-dojo-red text-white text-center py-2 -mt-8 -mx-8 mb-6 rounded-t-lg">
+      <span class="font-semibold">MOST POPULAR</span>
+    </div>
+  )}
+  
+  <h3 class="font-inter font-bold text-2xl mb-4">{title}</h3>
+  
+  <div class="mb-6">
+    <span class="text-4xl font-bold">${price}</span>
+    <span class="text-dojo-gray">/month</span>
+  </div>
+  
+  <ul class="space-y-3 mb-8">
+    {features.map((feature) => (
+      <li class="flex items-start">
+        <svg class="w-5 h-5 text-dojo-red mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-dojo-gray">{feature}</span>
+      </li>
+    ))}
+  </ul>
+  
+  <a 
+    href={ctaLink}
+    class={`block text-center py-3 px-6 rounded font-semibold transition-colors ${
+      highlight 
+        ? 'bg-dojo-red text-white hover:bg-red-700' 
+        : 'bg-dojo-black text-white hover:bg-gray-800'
+    }`}
+  >
+    {ctaText}
+  </a>
+</div>

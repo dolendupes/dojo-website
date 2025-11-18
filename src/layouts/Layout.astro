@@ -1,0 +1,136 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = "DOJO Tampa - A private collective where Tampa's leaders forge strength, build networks, and create opportunities together.", image = "/og-image.jpg" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/logos/logo-square.png" />
+    <link rel="icon" type="image/svg+xml" href="/images/logos/DOJO_Square_Black.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Inter Tight Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <title>{title}</title>
+  </head>
+  <body class="bg-dojo-white text-dojo-black">
+    <nav class="bg-dojo-black border-b border-dojo-gray">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="/" class="flex items-center">
+              <img src="/images/logos/DOJO_white.svg" alt="DOJO" class="h-8 w-auto" />
+            </a>
+          </div>
+          
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="/" class="text-dojo-white hover:text-dojo-red transition-colors">Home</a>
+            <a href="/mission" class="text-dojo-white hover:text-dojo-red transition-colors">Mission</a>
+            <a href="/labs" class="text-dojo-white hover:text-dojo-red transition-colors">DOJO Labs</a>
+            <a href="/events" class="text-dojo-white hover:text-dojo-red transition-colors">Events</a>
+            <a href="/friends" class="text-dojo-white hover:text-dojo-red transition-colors">Friends of DOJO</a>
+            <a href="/gallery" class="text-dojo-white hover:text-dojo-red transition-colors">Gallery</a>
+          </div>
+          
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button type="button" id="mobile-menu-button" class="text-dojo-white hover:text-dojo-red">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="/" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Home</a>
+          <a href="/mission" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Mission</a>
+          <a href="/labs" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">DOJO Labs</a>
+          <a href="/events" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Events</a>
+          <a href="/friends" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Friends of DOJO</a>
+          <a href="/gallery" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Gallery</a>
+        </div>
+      </div>
+    </nav>
+    
+    <main>
+      <slot />
+    </main>
+    
+    <footer class="bg-dojo-black text-dojo-white mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="md:col-span-2">
+            <img src="/images/logos/DOJO_white.svg" alt="DOJO" class="h-8 w-auto mb-4" />
+            <p class="text-dojo-light mb-4 italic">
+              Every Rep Is A Ritual
+            </p>
+            <p class="text-sm text-dojo-gray">
+              3508 S Manhattan Ave<br>
+              Tampa, FL 33629
+            </p>
+          </div>
+          
+          <div>
+            <h4 class="font-inter font-semibold mb-4">Explore</h4>
+            <ul class="space-y-2">
+              <li><a href="/mission" class="text-dojo-light hover:text-dojo-red transition-colors">Mission</a></li>
+              <li><a href="/labs" class="text-dojo-light hover:text-dojo-red transition-colors">DOJO Labs</a></li>
+              <li><a href="/events" class="text-dojo-light hover:text-dojo-red transition-colors">Events</a></li>
+              <li><a href="/friends" class="text-dojo-light hover:text-dojo-red transition-colors">Friends of DOJO</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-inter font-semibold mb-4">Connect</h4>
+            <ul class="space-y-2">
+              <li><a href="/#inquiry" class="text-dojo-light hover:text-dojo-red transition-colors">Inquire</a></li>
+              <li><a href="/gallery" class="text-dojo-light hover:text-dojo-red transition-colors">Gallery</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="border-t border-dojo-gray mt-8 pt-8 text-center text-sm text-dojo-gray">
+          <p>&copy; 2024 DOJO TAMPA LLC. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      mobileMenuButton?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+      });
+    </script>
+    
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+  </body>
+</html>

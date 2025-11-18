@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+// Get all blog posts
+const posts = await Astro.glob('../content/blog/*.mdx');
+
+// Sort posts by date (newest first)
+const sortedPosts = posts.sort((a, b) => {
+  return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+});
+---
+
+<Layout title="Blog - DOJO Tampa">
+  <!-- Hero Section -->
+  <section class="bg-dojo-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4">Insights & Stories</h1>
+      <p class="text-xl text-dojo-light max-w-3xl">
+        Thoughts on fitness, entrepreneurship, and building exceptional communities from DOJO members and partners.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Blog Posts Grid -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPosts.map((post) => (
+          <BlogCard 
+            title={post.frontmatter.title}
+            excerpt={post.frontmatter.excerpt}
+            date={post.frontmatter.date}
+            author={post.frontmatter.author}
+            category={post.frontmatter.category}
+            slug={post.frontmatter.slug}
+            image={post.frontmatter.image}
+          />
+        ))}
+      </div>
+      
+      {sortedPosts.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-xl text-dojo-gray">Blog posts coming soon...</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

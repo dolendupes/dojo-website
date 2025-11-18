@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Partner data can be managed here or pulled from a CMS
+const partners = [
+  {
+    name: "Xplor",
+    category: "Technology",
+    description: "Experience management and member engagement platform.",
+    logo: "/images/partners/xplor.png"
+  },
+  {
+    name: "MarianaTek",
+    category: "Technology",
+    description: "Membership management and class scheduling system.",
+    logo: "/images/partners/marianatek.png"
+  },
+  // Add more partners as they come on board
+];
+
+const partnerCategories = ["All", "Technology", "Wellness", "Business", "Community"];
+---
+
+<Layout title="Partners - DOJO Tampa">
+  <!-- Hero Section -->
+  <section class="bg-dojo-black text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4">Our Partners</h1>
+      <p class="text-xl text-dojo-light max-w-3xl">
+        DOJO Tampa partners with exceptional organizations that share our commitment to excellence and community building.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Partners Grid -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Category Filter -->
+      <div class="mb-12">
+        <div class="flex flex-wrap gap-2">
+          {partnerCategories.map((category) => (
+            <button 
+              class={`px-4 py-2 rounded font-semibold transition-colors ${
+                category === "All" 
+                  ? "bg-dojo-red text-white" 
+                  : "bg-dojo-light text-dojo-black hover:bg-dojo-gray hover:text-white"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Partners Display -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {partners.map((partner) => (
+          <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
+            <div class="h-24 mb-6 flex items-center justify-center bg-dojo-light rounded">
+              <span class="text-dojo-gray font-semibold">{partner.name}</span>
+            </div>
+            <h3 class="font-inter font-bold text-xl mb-2">{partner.name}</h3>
+            <span class="inline-block px-3 py-1 text-sm font-semibold text-dojo-red bg-red-50 rounded-full mb-3">
+              {partner.category}
+            </span>
+            <p class="text-dojo-gray">{partner.description}</p>
+          </div>
+        ))}
+      </div>
+      
+      {partners.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-xl text-dojo-gray">Partner announcements coming soon...</p>
+        </div>
+      )}
+    </div>
+  </section>
+  
+  <!-- Partner CTA -->
+  <section class="py-16 bg-dojo-light">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-inter font-bold text-3xl mb-4">Become a DOJO Partner</h2>
+      <p class="text-xl text-dojo-gray mb-8">
+        Interested in partnering with DOJO Tampa? We're always looking for organizations that align with our mission of building exceptional communities.
+      </p>
+      <a href="/contact" class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
+        Get in Touch
+      </a>
+    </div>
+  </section>
+</Layout>
