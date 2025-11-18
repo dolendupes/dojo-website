@@ -7,7 +7,7 @@ export interface Props {
   image?: string;
 }
 
-const { title, description = "DOJO Tampa - A private collective where Tampa's leaders forge strength, build networks, and create opportunities together.", image = "/og-image.jpg" } = Astro.props;
+const { title, description = "DOJO Tampa - A private collective where Tampa's leaders forge strength, build networks, and create opportunities together.", image = `${import.meta.env.BASE_URL}og-image.jpg` } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -16,8 +16,8 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/images/logos/logo-square.png" />
-    <link rel="icon" type="image/svg+xml" href="/images/logos/DOJO_Square_Black.svg" />
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}images/logos/logo-square.png`} />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}images/logos/DOJO_Square_Black.svg`} />
     <meta name="generator" content={Astro.generator} />
     
     <!-- Open Graph -->
@@ -38,19 +38,19 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
-            <a href="/" class="flex items-center">
-              <img src="/images/logos/DOJO_white.svg" alt="DOJO" class="h-8 w-auto" />
+            <a href={import.meta.env.BASE_URL} class="flex items-center">
+              <img src={`${import.meta.env.BASE_URL}images/logos/DOJO_white.svg`} alt="DOJO" class="h-8 w-auto" />
             </a>
           </div>
           
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="/" class="text-dojo-white hover:text-dojo-red transition-colors">Home</a>
-            <a href="/mission" class="text-dojo-white hover:text-dojo-red transition-colors">Mission</a>
-            <a href="/labs" class="text-dojo-white hover:text-dojo-red transition-colors">DOJO Labs</a>
-            <a href="/events" class="text-dojo-white hover:text-dojo-red transition-colors">Events</a>
-            <a href="/friends" class="text-dojo-white hover:text-dojo-red transition-colors">Friends of DOJO</a>
-            <a href="/gallery" class="text-dojo-white hover:text-dojo-red transition-colors">Gallery</a>
+            <a href={import.meta.env.BASE_URL} class="text-dojo-white hover:text-dojo-red transition-colors">Home</a>
+            <a href={`${import.meta.env.BASE_URL}mission`} class="text-dojo-white hover:text-dojo-red transition-colors">Mission</a>
+            <a href={`${import.meta.env.BASE_URL}events`} class="text-dojo-white hover:text-dojo-red transition-colors">Events</a>
+            <a href={`${import.meta.env.BASE_URL}labs`} class="text-dojo-white hover:text-dojo-red transition-colors">DOJO Labs</a>
+            <a href={`${import.meta.env.BASE_URL}friends`} class="text-dojo-white hover:text-dojo-red transition-colors">Friends of DOJO</a>
+            <a href={`${import.meta.env.BASE_URL}gallery`} class="text-dojo-white hover:text-dojo-red transition-colors">Gallery</a>
           </div>
           
           <!-- Mobile menu button -->
@@ -67,12 +67,12 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
       <!-- Mobile menu -->
       <div id="mobile-menu" class="hidden md:hidden">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="/" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Home</a>
-          <a href="/mission" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Mission</a>
-          <a href="/labs" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">DOJO Labs</a>
-          <a href="/events" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Events</a>
-          <a href="/friends" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Friends of DOJO</a>
-          <a href="/gallery" class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Gallery</a>
+          <a href={import.meta.env.BASE_URL} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Home</a>
+          <a href={`${import.meta.env.BASE_URL}mission`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Mission</a>
+          <a href={`${import.meta.env.BASE_URL}events`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Events</a>
+          <a href={`${import.meta.env.BASE_URL}labs`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">DOJO Labs</a>
+          <a href={`${import.meta.env.BASE_URL}friends`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Friends of DOJO</a>
+          <a href={`${import.meta.env.BASE_URL}gallery`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Gallery</a>
         </div>
       </div>
     </nav>
@@ -85,7 +85,7 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div class="md:col-span-2">
-            <img src="/images/logos/DOJO_white.svg" alt="DOJO" class="h-8 w-auto mb-4" />
+            <img src={`${import.meta.env.BASE_URL}images/logos/DOJO_white.svg`} alt="DOJO" class="h-8 w-auto mb-4" />
             <p class="text-dojo-light mb-4 italic">
               Every Rep Is A Ritual
             </p>
@@ -98,18 +98,18 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
           <div>
             <h4 class="font-inter font-semibold mb-4">Explore</h4>
             <ul class="space-y-2">
-              <li><a href="/mission" class="text-dojo-light hover:text-dojo-red transition-colors">Mission</a></li>
-              <li><a href="/labs" class="text-dojo-light hover:text-dojo-red transition-colors">DOJO Labs</a></li>
-              <li><a href="/events" class="text-dojo-light hover:text-dojo-red transition-colors">Events</a></li>
-              <li><a href="/friends" class="text-dojo-light hover:text-dojo-red transition-colors">Friends of DOJO</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}mission`} class="text-dojo-light hover:text-dojo-red transition-colors">Mission</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}events`} class="text-dojo-light hover:text-dojo-red transition-colors">Events</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}labs`} class="text-dojo-light hover:text-dojo-red transition-colors">DOJO Labs</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}friends`} class="text-dojo-light hover:text-dojo-red transition-colors">Friends of DOJO</a></li>
             </ul>
           </div>
           
           <div>
             <h4 class="font-inter font-semibold mb-4">Connect</h4>
             <ul class="space-y-2">
-              <li><a href="/#inquiry" class="text-dojo-light hover:text-dojo-red transition-colors">Inquire</a></li>
-              <li><a href="/gallery" class="text-dojo-light hover:text-dojo-red transition-colors">Gallery</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}#inquiry`} class="text-dojo-light hover:text-dojo-red transition-colors">Inquire</a></li>
+              <li><a href={`${import.meta.env.BASE_URL}gallery`} class="text-dojo-light hover:text-dojo-red transition-colors">Gallery</a></li>
             </ul>
           </div>
         </div>

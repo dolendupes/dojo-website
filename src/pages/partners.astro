@@ -7,13 +7,13 @@ const partners = [
     name: "Xplor",
     category: "Technology",
     description: "Experience management and member engagement platform.",
-    logo: "/images/partners/xplor.png"
+    logo: `${import.meta.env.BASE_URL}images/partners/xplor.png`
   },
   {
     name: "MarianaTek",
     category: "Technology",
     description: "Membership management and class scheduling system.",
-    logo: "/images/partners/marianatek.png"
+    logo: `${import.meta.env.BASE_URL}images/partners/marianatek.png`
   },
   // Add more partners as they come on board
 ];
@@ -83,7 +83,7 @@ const partnerCategories = ["All", "Technology", "Wellness", "Business", "Communi
       <p class="text-xl text-dojo-gray mb-8">
         Interested in partnering with DOJO Tampa? We're always looking for organizations that align with our mission of building exceptional communities.
       </p>
-      <a href="/contact" class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
+      <a href={`${import.meta.env.BASE_URL}contact`} class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
         Get in Touch
       </a>
     </div>

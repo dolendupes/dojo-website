@@ -2,31 +2,38 @@
 import Layout from '../layouts/Layout.astro';
 import AdvancedGallery from '../components/AdvancedGallery.astro';
 
-// Gallery images - replace with actual images
+// Get BASE_URL - ensure it always ends with / for proper path joining
+const baseUrl = import.meta.env.BASE_URL || '/';
+const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+// Placeholder image path - replace individual images as they become available
+const placeholderImage = `${base}images/gallery/placeholder.svg`;
+
+// Gallery images - using placeholder until actual images are added
 const galleryImages = [
   // Training Spaces
-  { src: "/images/gallery/training-1.jpg", alt: "Main training floor", category: "Training", title: "Main Training Floor", description: "3,000 sq ft of open training space" },
-  { src: "/images/gallery/training-2.jpg", alt: "Strength area", category: "Training", title: "Strength Area", description: "Olympic platforms and power racks" },
-  { src: "/images/gallery/training-3.jpg", alt: "Functional fitness zone", category: "Training", title: "Functional Zone", description: "Turf area for dynamic movements" },
-  { src: "/images/gallery/training-4.jpg", alt: "Recovery area", category: "Training", title: "Recovery Area", description: "Dedicated space for mobility and recovery" },
+  { src: placeholderImage, alt: "Main training floor", category: "Training", title: "Main Training Floor", description: "3,000 sq ft of open training space" },
+  { src: placeholderImage, alt: "Strength area", category: "Training", title: "Strength Area", description: "Olympic platforms and power racks" },
+  { src: placeholderImage, alt: "Functional fitness zone", category: "Training", title: "Functional Zone", description: "Turf area for dynamic movements" },
+  { src: placeholderImage, alt: "Recovery area", category: "Training", title: "Recovery Area", description: "Dedicated space for mobility and recovery" },
   
   // DOJO Labs
-  { src: "/images/gallery/labs-1.jpg", alt: "Open workspace", category: "Labs", title: "Open Workspace", description: "Collaborative hot desk area" },
-  { src: "/images/gallery/labs-2.jpg", alt: "Private offices", category: "Labs", title: "Private Offices", description: "Quiet spaces for focused work" },
-  { src: "/images/gallery/labs-3.jpg", alt: "Meeting rooms", category: "Labs", title: "Meeting Rooms", description: "Professional meeting spaces" },
-  { src: "/images/gallery/labs-4.jpg", alt: "Event space", category: "Labs", title: "Event Space", description: "Versatile space for workshops and presentations" },
+  { src: placeholderImage, alt: "Open workspace", category: "Labs", title: "Open Workspace", description: "Collaborative hot desk area" },
+  { src: placeholderImage, alt: "Private offices", category: "Labs", title: "Private Offices", description: "Quiet spaces for focused work" },
+  { src: placeholderImage, alt: "Meeting rooms", category: "Labs", title: "Meeting Rooms", description: "Professional meeting spaces" },
+  { src: placeholderImage, alt: "Event space", category: "Labs", title: "Event Space", description: "Versatile space for workshops and presentations" },
   
   // Community
-  { src: "/images/gallery/community-1.jpg", alt: "Member event", category: "Community", title: "Member Events", description: "Regular networking and social gatherings" },
-  { src: "/images/gallery/community-2.jpg", alt: "Group training", category: "Community", title: "Group Training", description: "Building strength together" },
-  { src: "/images/gallery/community-3.jpg", alt: "Workshop session", category: "Community", title: "Workshops", description: "Learning from industry leaders" },
-  { src: "/images/gallery/community-4.jpg", alt: "Networking event", category: "Community", title: "Networking", description: "Meaningful connections, not small talk" },
+  { src: placeholderImage, alt: "Member event", category: "Community", title: "Member Events", description: "Regular networking and social gatherings" },
+  { src: placeholderImage, alt: "Group training", category: "Community", title: "Group Training", description: "Building strength together" },
+  { src: placeholderImage, alt: "Workshop session", category: "Community", title: "Workshops", description: "Learning from industry leaders" },
+  { src: placeholderImage, alt: "Networking event", category: "Community", title: "Networking", description: "Meaningful connections, not small talk" },
   
   // Facilities
-  { src: "/images/gallery/facility-1.jpg", alt: "Entrance", category: "Facility", title: "DOJO Entrance", description: "Where transformation begins" },
-  { src: "/images/gallery/facility-2.jpg", alt: "Lounge area", category: "Facility", title: "Member Lounge", description: "Relax and connect between sessions" },
-  { src: "/images/gallery/facility-3.jpg", alt: "Locker rooms", category: "Facility", title: "Locker Rooms", description: "Premium amenities and privacy" },
-  { src: "/images/gallery/facility-4.jpg", alt: "Exterior", category: "Facility", title: "Building Exterior", description: "3508 S Manhattan Ave, Tampa" },
+  { src: placeholderImage, alt: "Entrance", category: "Facility", title: "DOJO Entrance", description: "Where transformation begins" },
+  { src: placeholderImage, alt: "Lounge area", category: "Facility", title: "Member Lounge", description: "Relax and connect between sessions" },
+  { src: placeholderImage, alt: "Locker rooms", category: "Facility", title: "Locker Rooms", description: "Premium amenities and privacy" },
+  { src: placeholderImage, alt: "Exterior", category: "Facility", title: "Building Exterior", description: "3508 S Manhattan Ave, Tampa" },
 ];
 ---
 
@@ -58,8 +65,8 @@ const galleryImages = [
       <p class="text-xl text-dojo-gray mb-8">
         Pictures only tell part of the story. The energy, community, and purpose of DOJO must be experienced firsthand.
       </p>
-      <a href="/#inquiry" class="bg-dojo-red text-white px-8 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-block">
-        Schedule a Visit
+      <a href={`${import.meta.env.BASE_URL}#inquiry`} class="bg-dojo-red text-white px-8 py-3 rounded font-semibold hover:bg-red-700 transition-colors inline-block">
+        Inquire about a visit
       </a>
     </div>
   </section>

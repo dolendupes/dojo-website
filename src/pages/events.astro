@@ -8,42 +8,42 @@ const eventTypes = [
     title: "High-Performance Training Sessions",
     description: "Daily group training designed for peak performers. From strength and conditioning to martial arts and mobility work.",
     frequency: "Daily",
-    image: "/images/events/training.jpg"
+    image: `${import.meta.env.BASE_URL}images/events/training.jpg`
   },
   {
     category: "Networking",
     title: "Member Mixers",
     description: "Curated networking events where meaningful connections replace small talk. Build relationships that matter.",
     frequency: "Monthly",
-    image: "/images/events/networking.jpg"
+    image: `${import.meta.env.BASE_URL}images/events/networking.jpg`
   },
   {
     category: "Workshops",
     title: "Executive Workshops",
     description: "Learn from successful entrepreneurs and industry leaders. Topics range from scaling businesses to optimizing performance.",
     frequency: "Bi-weekly",
-    image: "/images/events/workshop.jpg"
+    image: `${import.meta.env.BASE_URL}images/events/workshop.jpg`
   },
   {
     category: "Challenges",
     title: "DOJO Challenges",
     description: "Quarterly challenges that test physical and mental limits. Build camaraderie through shared struggle and victory.",
     frequency: "Quarterly",
-    image: "/images/events/challenge.jpg"
+    image: `${import.meta.env.BASE_URL}images/events/challenge.jpg`
   },
   {
     category: "Private Events",
     title: "Member-Hosted Events",
     description: "Members can reserve our spaces for private events, from team offsites to product launches.",
     frequency: "On Request",
-    image: "/images/events/private.jpg"
+    image: `${import.meta.env.BASE_URL}images/events/private.jpg`
   },
   {
     category: "Community",
     title: "Family Events",
     description: "Building a multi-generational community with events that bring families together.",
     frequency: "Seasonal",
-    image: "/images/events/family.jpg"
+    image: `${import.meta.env.BASE_URL}images/events/family.jpg`
   }
 ];
 ---
@@ -118,8 +118,8 @@ const eventTypes = [
       <p class="text-xl text-dojo-gray mb-8">
         DOJO members have access to our event spaces for team gatherings, workshops, product launches, and private celebrations. Our versatile spaces and professional amenities provide the perfect backdrop for memorable events.
       </p>
-      <a href="/#inquiry" class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
-        Learn More About Membership
+      <a href={`${import.meta.env.BASE_URL}#inquiry`} class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
+        Inquire About Events
       </a>
     </div>
   </section>
