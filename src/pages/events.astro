@@ -73,37 +73,6 @@ const eventTypes = [
     </div>
   </section>
   
-  <!-- Event Types -->
-  <section id="member-events" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="font-inter font-bold text-4xl mb-4">What Happens at DOJO</h2>
-        <p class="text-xl text-dojo-gray max-w-3xl mx-auto">
-          From daily training sessions to exclusive networking events, every gathering is designed with intention.
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {eventTypes.map((event) => (
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-            <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-              <span>{event.category}</span>
-            </div>
-            
-            <div class="p-6">
-              <span class="inline-block px-3 py-1 text-sm font-semibold text-dojo-red bg-red-50 rounded-full mb-3">
-                {event.frequency}
-              </span>
-              
-              <h3 class="font-inter font-bold text-xl mb-3">{event.title}</h3>
-              <p class="text-dojo-gray">{event.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Venue Rental for Non-Members -->
   <section id="venue-rental-options" class="py-20 bg-dojo-light">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,11 +86,21 @@ const eventTypes = [
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Bridal & Groom</span>
+            <span>Bridal Party Prep</span>
           </div>
           <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Bridal & Groom Parties</h3>
-            <p class="text-dojo-gray">Celebrate your special day with our elegant spaces perfect for bridal showers, bachelor parties, and pre-wedding gatherings.</p>
+            <h3 class="font-inter font-bold text-xl mb-3">Bridal Party Prep</h3>
+            <p class="text-dojo-gray">Prepare for your special day in style and class. Our elegant spaces provide the perfect setting for bridal parties to get ready with mirrors, seating, and all the amenities you need for a seamless preparation experience.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+            <span>Groom Party Prep</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-inter font-bold text-xl mb-3">Groom Party Prep</h3>
+            <p class="text-dojo-gray">Prepare for your wedding day in a sophisticated setting. Our refined spaces offer the perfect environment for grooms and their parties to get ready with style, elegance, and all necessary amenities.</p>
           </div>
         </div>
         
@@ -142,16 +121,6 @@ const eventTypes = [
           <div class="p-6">
             <h3 class="font-inter font-bold text-xl mb-3">Cocktail Parties</h3>
             <p class="text-dojo-gray">Sophisticated spaces for networking events, celebrations, and social gatherings with full bar service capabilities.</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Bridal Suite</span>
-          </div>
-          <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Bridal Get-Ready Room</h3>
-            <p class="text-dojo-gray">A dedicated space for bridal parties to prepare, complete with mirrors, seating, and all the amenities you need.</p>
           </div>
         </div>
         
@@ -183,6 +152,37 @@ const eventTypes = [
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Types -->
+  <section id="member-events" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-inter font-bold text-4xl mb-4">What Happens at DOJO</h2>
+        <p class="text-xl text-dojo-gray max-w-3xl mx-auto">
+          From daily training sessions to exclusive networking events, every gathering is designed with intention.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {eventTypes.map((event) => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+              <span>{event.category}</span>
+            </div>
+            
+            <div class="p-6">
+              <span class="inline-block px-3 py-1 text-sm font-semibold text-dojo-red bg-red-50 rounded-full mb-3">
+                {event.frequency}
+              </span>
+              
+              <h3 class="font-inter font-bold text-xl mb-3">{event.title}</h3>
+              <p class="text-dojo-gray">{event.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
