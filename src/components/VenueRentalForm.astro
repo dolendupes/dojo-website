@@ -1,0 +1,240 @@
+---
+// Venue rental inquiry form
+---
+
+<form id="venue-rental-form" class="max-w-xl mx-auto">
+  <!-- Required Fields -->
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div>
+      <label for="venue-first-name" class="block text-sm font-medium text-white">
+        First Name <span class="text-dojo-light">*</span>
+      </label>
+      <input
+        type="text"
+        name="first-name"
+        id="venue-first-name"
+        required
+        class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+      />
+    </div>
+    
+    <div>
+      <label for="venue-last-name" class="block text-sm font-medium text-white">
+        Last Name <span class="text-dojo-light">*</span>
+      </label>
+      <input
+        type="text"
+        name="last-name"
+        id="venue-last-name"
+        required
+        class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+      />
+    </div>
+    
+    <div class="sm:col-span-2">
+      <label for="venue-email" class="block text-sm font-medium text-white">
+        Email <span class="text-dojo-light">*</span>
+      </label>
+      <input
+        type="email"
+        name="email"
+        id="venue-email"
+        required
+        class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+      />
+    </div>
+    
+    <div class="sm:col-span-2">
+      <label for="venue-phone" class="block text-sm font-medium text-white">
+        Phone Number <span class="text-dojo-light text-xs">(optional)</span>
+      </label>
+      <input
+        type="tel"
+        name="phone"
+        id="venue-phone"
+        class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+      />
+    </div>
+    
+    <div class="sm:col-span-2">
+      <label for="venue-company" class="block text-sm font-medium text-white">
+        Company / Organization <span class="text-dojo-light text-xs">(optional)</span>
+      </label>
+      <input
+        type="text"
+        name="company"
+        id="venue-company"
+        class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+      />
+    </div>
+    
+    <div class="sm:col-span-2">
+      <label for="venue-interest" class="block text-sm font-medium text-white">
+        Tell us why you're reaching out <span class="text-dojo-light">*</span>
+      </label>
+      <textarea
+        id="venue-interest"
+        name="interest"
+        rows="4"
+        required
+        class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+        placeholder="Are you planning an event? Want to learn more about our spaces? Have questions about how we work? Let us know..."
+      ></textarea>
+    </div>
+  </div>
+  
+  <!-- Optional Detailed Section -->
+  <div class="mt-8 pt-8 border-t border-white/20">
+    <button
+      type="button"
+      id="toggle-details"
+      class="w-full flex items-center justify-between text-left p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
+    >
+      <div>
+        <div class="text-sm font-medium text-white mb-1">Want to be more specific?</div>
+        <div class="text-xs text-dojo-light">Share event details, dates, guest count, and more</div>
+      </div>
+      <svg
+        id="toggle-icon"
+        class="w-5 h-5 text-white transform transition-transform"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+    
+    <div id="details-section" class="hidden mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div class="sm:col-span-2">
+        <label for="venue-event-type" class="block text-sm font-medium text-white">
+          Event Type <span class="text-dojo-light text-xs">(optional)</span>
+        </label>
+        <select
+          id="venue-event-type"
+          name="event-type"
+          class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white focus:border-dojo-red focus:ring-dojo-red"
+        >
+          <option value="">Select an event type...</option>
+          <option value="bridal-groom">Bridal & Groom Party</option>
+          <option value="corporate">Corporate Event</option>
+          <option value="cocktail">Cocktail Party</option>
+        <option value="bridal-suite">Bridal Get-Ready Room</option>
+        <option value="tasting">Private Tasting</option>
+        <option value="cooking">Cooking Lessons</option>
+        <option value="other">Other</option>
+        </select>
+      </div>
+      
+      <div class="sm:col-span-2">
+        <label for="venue-date" class="block text-sm font-medium text-white">
+          Preferred Date(s) <span class="text-dojo-light text-xs">(optional)</span>
+        </label>
+        <input
+          type="text"
+          name="date"
+          id="venue-date"
+          placeholder="e.g., March 15, 2025 or March 15-16, 2025"
+          class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+        />
+      </div>
+      
+      <div class="sm:col-span-2">
+        <label for="venue-guests" class="block text-sm font-medium text-white">
+          Expected Number of Guests <span class="text-dojo-light text-xs">(optional)</span>
+        </label>
+        <input
+          type="number"
+          name="guests"
+          id="venue-guests"
+          min="1"
+          class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+        />
+      </div>
+      
+      <div class="sm:col-span-2">
+        <label for="venue-details" class="block text-sm font-medium text-white">
+          Additional Event Details <span class="text-dojo-light text-xs">(optional)</span>
+        </label>
+        <textarea
+          id="venue-details"
+          name="details"
+          rows="4"
+          class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
+          placeholder="Special requirements, setup needs, catering preferences, etc."
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-6">
+    <button
+      type="submit"
+      class="w-full bg-dojo-red text-white py-3 px-6 rounded font-semibold hover:bg-red-700 transition-colors"
+    >
+      Submit Venue Rental Inquiry
+    </button>
+  </div>
+  
+  <p class="text-sm text-dojo-light mt-4 text-center">
+    We'll review your request and get back to you within 2-3 business days.
+  </p>
+  
+  <div id="venue-form-message" class="mt-4 hidden">
+    <div class="rounded-md p-4 bg-white/10 border border-white/20">
+      <p class="text-sm text-white"></p>
+    </div>
+  </div>
+</form>
+
+<script>
+  // Toggle details section
+  const toggleButton = document.getElementById('toggle-details');
+  const detailsSection = document.getElementById('details-section');
+  const toggleIcon = document.getElementById('toggle-icon');
+  
+  toggleButton?.addEventListener('click', () => {
+    const isHidden = detailsSection?.classList.contains('hidden');
+    if (isHidden) {
+      detailsSection?.classList.remove('hidden');
+      toggleIcon?.classList.add('rotate-180');
+    } else {
+      detailsSection?.classList.add('hidden');
+      toggleIcon?.classList.remove('rotate-180');
+    }
+  });
+  
+  // Form submission
+  const form = document.getElementById('venue-rental-form') as HTMLFormElement;
+  const formMessage = document.getElementById('venue-form-message');
+  const messageText = formMessage?.querySelector('p');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Log the submission for now
+    // Replace with your database endpoint when ready
+    console.log('Venue rental inquiry submission:', data);
+    
+    // Show confirmation message
+    if (formMessage && messageText) {
+      formMessage.classList.remove('hidden');
+      messageText.textContent = 'Thank you for your inquiry. We\'ll review your request and get back to you within 2-3 business days.';
+    }
+    
+    // Reset form
+    form.reset();
+    
+    // Collapse details section
+    detailsSection?.classList.add('hidden');
+    toggleIcon?.classList.remove('rotate-180');
+    
+    // Hide message after 5 seconds
+    setTimeout(() => {
+      formMessage?.classList.add('hidden');
+    }, 5000);
+  });
+</script>

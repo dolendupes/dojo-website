@@ -1,15 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import VenueRentalForm from '../components/VenueRentalForm.astro';
 
 // Sample events to showcase capabilities
 const eventTypes = [
-  {
-    category: "Training",
-    title: "High-Performance Training Sessions",
-    description: "Daily group training designed for peak performers. From strength and conditioning to martial arts and mobility work.",
-    frequency: "Daily",
-    image: `${import.meta.env.BASE_URL}images/events/training.jpg`
-  },
   {
     category: "Networking",
     title: "Member Mixers",
@@ -21,15 +15,8 @@ const eventTypes = [
     category: "Workshops",
     title: "Executive Workshops",
     description: "Learn from successful entrepreneurs and industry leaders. Topics range from scaling businesses to optimizing performance.",
-    frequency: "Bi-weekly",
+    frequency: "Periodic",
     image: `${import.meta.env.BASE_URL}images/events/workshop.jpg`
-  },
-  {
-    category: "Challenges",
-    title: "DOJO Challenges",
-    description: "Quarterly challenges that test physical and mental limits. Build camaraderie through shared struggle and victory.",
-    frequency: "Quarterly",
-    image: `${import.meta.env.BASE_URL}images/events/challenge.jpg`
   },
   {
     category: "Private Events",
@@ -44,6 +31,20 @@ const eventTypes = [
     description: "Building a multi-generational community with events that bring families together.",
     frequency: "Seasonal",
     image: `${import.meta.env.BASE_URL}images/events/family.jpg`
+  },
+  {
+    category: "Training",
+    title: "High-Performance Training Sessions",
+    description: "Daily group training designed for peak performers. From strength and conditioning to martial arts and mobility work.",
+    frequency: "Daily",
+    image: `${import.meta.env.BASE_URL}images/events/training.jpg`
+  },
+  {
+    category: "Culinary",
+    title: "Cooking Lessons",
+    description: "Hands-on culinary experiences led by expert chefs. Learn new techniques, explore diverse cuisines, and enjoy the fruits of your labor with fellow members.",
+    frequency: "Periodic",
+    image: `${import.meta.env.BASE_URL}images/events/cooking.jpg`
   }
 ];
 ---
@@ -54,15 +55,21 @@ const eventTypes = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4 text-dojo-red">Events & Experiences</h1>
-        <p class="text-xl text-dojo-light max-w-3xl mx-auto">
+        <p class="text-xl text-dojo-light max-w-3xl mx-auto mb-8">
           DOJO hosts a curated calendar of events designed to challenge, connect, and elevate our members.
         </p>
+        <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors">
+          Inquire About Venue Rental
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
   
   <!-- Event Types -->
-  <section class="py-20 bg-white">
+  <section id="member-events" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="font-inter font-bold text-4xl mb-4">What Happens at DOJO</h2>
@@ -92,8 +99,91 @@ const eventTypes = [
     </div>
   </section>
 
+  <!-- Venue Rental for Non-Members -->
+  <section id="venue-rental-options" class="py-20 bg-dojo-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-inter font-bold text-4xl mb-4">Venue Rental</h2>
+        <p class="text-xl text-dojo-gray max-w-3xl mx-auto">
+          DOJO's versatile spaces are available for private events. Perfect for celebrations, corporate gatherings, and special occasions.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+            <span>Bridal & Groom</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-inter font-bold text-xl mb-3">Bridal & Groom Parties</h3>
+            <p class="text-dojo-gray">Celebrate your special day with our elegant spaces perfect for bridal showers, bachelor parties, and pre-wedding gatherings.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+            <span>Corporate</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-inter font-bold text-xl mb-3">Corporate Events</h3>
+            <p class="text-dojo-gray">Host team meetings, offsites, product launches, and corporate celebrations in our professional event spaces.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+            <span>Cocktail Parties</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-inter font-bold text-xl mb-3">Cocktail Parties</h3>
+            <p class="text-dojo-gray">Sophisticated spaces for networking events, celebrations, and social gatherings with full bar service capabilities.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+            <span>Bridal Suite</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-inter font-bold text-xl mb-3">Bridal Get-Ready Room</h3>
+            <p class="text-dojo-gray">A dedicated space for bridal parties to prepare, complete with mirrors, seating, and all the amenities you need.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+            <span>Tastings</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-inter font-bold text-xl mb-3">Private Tastings</h3>
+            <p class="text-dojo-gray">Host exclusive wine, whiskey, or culinary tastings in an intimate setting designed for connoisseurs.</p>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
+            <span>Cooking Lessons</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-inter font-bold text-xl mb-3">Cooking Lessons</h3>
+            <p class="text-dojo-gray">Hands-on culinary experiences led by expert chefs. Perfect for team building, private groups, or special occasions.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors">
+          Inquire About Venue Rental
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Event Philosophy -->
-  <section class="py-20 bg-dojo-light">
+  <section id="philosophy" class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="font-inter font-bold text-4xl mb-8 text-center">Events with Purpose</h2>
       
@@ -114,7 +204,7 @@ const eventTypes = [
   </section>
 
   <!-- Host an Event -->
-  <section class="py-16 bg-white">
+  <section id="host-event" class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="font-inter font-bold text-3xl mb-4">Host Your Event at DOJO</h2>
       <p class="text-xl text-dojo-gray mb-8">
@@ -123,6 +213,20 @@ const eventTypes = [
       <a href={`${import.meta.env.BASE_URL}#inquiry`} class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
         Inquire About Events
       </a>
+    </div>
+  </section>
+
+  <!-- Venue Rental Form Section -->
+  <section id="venue-rental" class="py-20 bg-dojo-black text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-inter font-bold text-4xl mb-4">Venue Rental Inquiry</h2>
+        <p class="text-xl text-dojo-light">
+          Interested in hosting your event at DOJO? Fill out the form below and we'll get back to you with availability and pricing.
+        </p>
+      </div>
+      
+      <VenueRentalForm />
     </div>
   </section>
 </Layout>
