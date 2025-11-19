@@ -47,17 +47,15 @@ const concepts = [
         <div class="carousel-slide min-w-full px-4 md:px-6" data-slide={index}>
           <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 md:p-12 text-center">
             <div class="mb-6">
-              <span class="text-6xl md:text-8xl font-bold text-dojo-red block mb-4">
+              <div class="text-6xl md:text-8xl font-bold text-dojo-red block mb-2">
                 {concept.japanese}
-              </span>
-              <span class="text-lg text-dojo-light italic">
+              </div>
+              <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-inter font-bold text-dojo-light">
+                ({concept.english})
+              </div>
+              <div class="text-sm md:text-base text-dojo-light italic mt-2">
                 {concept.romanji}
-              </span>
-            </div>
-            <div class="mb-4 px-4">
-              <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-inter font-bold text-center whitespace-nowrap mx-auto">
-                {concept.english}
-              </h3>
+              </div>
             </div>
             <p class="text-lg text-dojo-light max-w-3xl mx-auto">
               {concept.description}
