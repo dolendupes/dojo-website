@@ -45,19 +45,19 @@ const concepts = [
     <div class="carousel-track flex transition-transform duration-500 ease-in-out">
       {concepts.map((concept, index) => (
         <div class="carousel-slide min-w-full px-4 md:px-6" data-slide={index}>
-          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 md:p-12 text-center">
+          <div class="bg-white rounded-lg p-8 md:p-12 text-center shadow-lg">
             <div class="mb-6">
               <div class="text-6xl md:text-8xl font-bold text-dojo-red block mb-2">
                 {concept.japanese}
               </div>
-              <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-inter font-bold text-dojo-light">
+              <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-inter font-bold text-dojo-black">
                 ({concept.english})
               </div>
-              <div class="text-sm md:text-base text-dojo-light italic mt-2">
+              <div class="text-sm md:text-base text-dojo-gray italic mt-2">
                 {concept.romanji}
               </div>
             </div>
-            <p class="text-lg text-dojo-light max-w-3xl mx-auto">
+            <p class="text-lg text-dojo-gray max-w-3xl mx-auto">
               {concept.description}
             </p>
           </div>
@@ -68,7 +68,7 @@ const concepts = [
   
   <!-- Navigation -->
   <button 
-    class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
+    class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white/80 hover:bg-white text-dojo-black shadow-lg p-3 rounded-full transition-colors"
     aria-label="Previous concept"
   >
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,7 +77,7 @@ const concepts = [
   </button>
   
   <button 
-    class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
+    class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white/80 hover:bg-white text-dojo-black shadow-lg p-3 rounded-full transition-colors"
     aria-label="Next concept"
   >
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@ const concepts = [
     {concepts.map((_, index) => (
       <button 
         class={`carousel-indicator w-2 h-2 rounded-full transition-all ${
-          index === 0 ? 'bg-dojo-red w-8' : 'bg-white/40'
+          index === 0 ? 'bg-dojo-red w-8' : 'bg-dojo-gray'
         }`}
         data-slide-to={index}
         aria-label={`Go to slide ${index + 1}`}
@@ -117,10 +117,10 @@ const concepts = [
     indicators.forEach((indicator, index) => {
       if (index === currentSlide) {
         indicator.classList.add('bg-dojo-red', 'w-8');
-        indicator.classList.remove('bg-white/40');
+        indicator.classList.remove('bg-dojo-gray');
       } else {
         indicator.classList.remove('bg-dojo-red', 'w-8');
-        indicator.classList.add('bg-white/40');
+        indicator.classList.add('bg-dojo-gray');
       }
     });
   }

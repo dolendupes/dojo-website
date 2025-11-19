@@ -8,6 +8,17 @@ export interface Props {
 }
 
 const { title, description = "DOJO Tampa - A private collective where Tampa's leaders forge strength, build networks, and create opportunities together.", image = `${import.meta.env.BASE_URL}og-image.jpg` } = Astro.props;
+
+// Get current path for active state
+const currentPath = Astro.url.pathname.replace(/\/$/, ''); // Remove trailing slash
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
+const isActive = (path: string) => {
+  if (path === '' || path === '/') {
+    return currentPath === baseUrl || currentPath === '/' || currentPath === '';
+  }
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return currentPath === `${baseUrl}${normalizedPath}` || currentPath === normalizedPath;
+};
 ---
 
 <!DOCTYPE html>
@@ -32,9 +43,35 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <title>{title}</title>
+    <style>
+      /* Navigation underline animation */
+      .nav-link {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .nav-underline {
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 1px;
+        background-color: #dc2626; /* dojo-red */
+        transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover .nav-underline {
+        width: calc(100% - 0.5rem);
+      }
+      
+      .nav-link.active .nav-underline {
+        width: calc(100% - 0.5rem);
+      }
+    </style>
   </head>
   <body class="bg-dojo-white text-dojo-black">
-    <nav class="bg-dojo-black border-b border-dojo-gray">
+    <nav class="bg-white border-b border-dojo-gray">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex items-center">
@@ -44,18 +81,41 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
           </div>
           
           <!-- Desktop Navigation -->
-          <div class="hidden md:flex items-center space-x-8">
-            <a href={import.meta.env.BASE_URL} class="text-dojo-white hover:text-dojo-red transition-colors">Home</a>
-            <a href={`${import.meta.env.BASE_URL}mission`} class="text-dojo-white hover:text-dojo-red transition-colors">Mission</a>
-            <a href={`${import.meta.env.BASE_URL}events`} class="text-dojo-white hover:text-dojo-red transition-colors">Events</a>
-            <a href={`${import.meta.env.BASE_URL}labs`} class="text-dojo-white hover:text-dojo-red transition-colors">DOJO Labs</a>
-            <a href={`${import.meta.env.BASE_URL}friends`} class="text-dojo-white hover:text-dojo-red transition-colors">Friends of DOJO</a>
-            <a href={`${import.meta.env.BASE_URL}gallery`} class="text-dojo-white hover:text-dojo-red transition-colors">Gallery</a>
+          <div class="hidden md:flex items-center space-x-3">
+            <a href={import.meta.env.BASE_URL} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('') || isActive('/') ? 'active' : ''}`}>
+              Home
+              <span class="nav-underline"></span>
+            </a>
+            <span class="text-dojo-gray text-xs">|</span>
+            <a href={`${import.meta.env.BASE_URL}mission`} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('mission') || isActive('/mission') ? 'active' : ''}`}>
+              Mission
+              <span class="nav-underline"></span>
+            </a>
+            <span class="text-dojo-gray text-xs">|</span>
+            <a href={`${import.meta.env.BASE_URL}events`} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('events') || isActive('/events') ? 'active' : ''}`}>
+              Events
+              <span class="nav-underline"></span>
+            </a>
+            <span class="text-dojo-gray text-xs">|</span>
+            <a href={`${import.meta.env.BASE_URL}labs`} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('labs') || isActive('/labs') ? 'active' : ''}`}>
+              DOJO Labs
+              <span class="nav-underline"></span>
+            </a>
+            <span class="text-dojo-gray text-xs">|</span>
+            <a href={`${import.meta.env.BASE_URL}friends`} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('friends') || isActive('/friends') ? 'active' : ''}`}>
+              Friends of DOJO
+              <span class="nav-underline"></span>
+            </a>
+            <span class="text-dojo-gray text-xs">|</span>
+            <a href={`${import.meta.env.BASE_URL}gallery`} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('gallery') || isActive('/gallery') ? 'active' : ''}`}>
+              Gallery
+              <span class="nav-underline"></span>
+            </a>
           </div>
           
           <!-- Mobile menu button -->
           <div class="md:hidden flex items-center">
-            <button type="button" id="mobile-menu-button" class="text-dojo-white hover:text-dojo-red">
+            <button type="button" id="mobile-menu-button" class="text-dojo-red hover:text-dojo-black">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -65,14 +125,14 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
       </div>
       
       <!-- Mobile menu -->
-      <div id="mobile-menu" class="hidden md:hidden">
+      <div id="mobile-menu" class="hidden md:hidden bg-white">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href={import.meta.env.BASE_URL} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Home</a>
-          <a href={`${import.meta.env.BASE_URL}mission`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Mission</a>
-          <a href={`${import.meta.env.BASE_URL}events`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Events</a>
-          <a href={`${import.meta.env.BASE_URL}labs`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">DOJO Labs</a>
-          <a href={`${import.meta.env.BASE_URL}friends`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Friends of DOJO</a>
-          <a href={`${import.meta.env.BASE_URL}gallery`} class="block px-3 py-2 text-dojo-white hover:text-dojo-red">Gallery</a>
+          <a href={import.meta.env.BASE_URL} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('') || isActive('/') ? 'border-l-4 border-dojo-red' : ''}`}>Home</a>
+          <a href={`${import.meta.env.BASE_URL}mission`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('mission') || isActive('/mission') ? 'border-l-4 border-dojo-red' : ''}`}>Mission</a>
+          <a href={`${import.meta.env.BASE_URL}events`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('events') || isActive('/events') ? 'border-l-4 border-dojo-red' : ''}`}>Events</a>
+          <a href={`${import.meta.env.BASE_URL}labs`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('labs') || isActive('/labs') ? 'border-l-4 border-dojo-red' : ''}`}>DOJO Labs</a>
+          <a href={`${import.meta.env.BASE_URL}friends`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('friends') || isActive('/friends') ? 'border-l-4 border-dojo-red' : ''}`}>Friends of DOJO</a>
+          <a href={`${import.meta.env.BASE_URL}gallery`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('gallery') || isActive('/gallery') ? 'border-l-4 border-dojo-red' : ''}`}>Gallery</a>
         </div>
       </div>
     </nav>
