@@ -101,15 +101,9 @@ const isActive = (path: string) => {
               DOJO Labs
               <span class="nav-underline"></span>
             </a>
-            <span class="text-dojo-gray text-xs">|</span>
-            <a href={`${import.meta.env.BASE_URL}friends`} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('friends') || isActive('/friends') ? 'active' : ''}`}>
-              Friends of DOJO
-              <span class="nav-underline"></span>
-            </a>
-            <span class="text-dojo-gray text-xs">|</span>
-            <a href={`${import.meta.env.BASE_URL}gallery`} class={`relative uppercase tracking-wider text-xs font-medium whitespace-nowrap text-dojo-red hover:text-dojo-black transition-colors nav-link px-2 py-1 ${isActive('gallery') || isActive('/gallery') ? 'active' : ''}`}>
-              Gallery
-              <span class="nav-underline"></span>
+            <span class="text-dojo-gray text-xs ml-4">|</span>
+            <a href={`${import.meta.env.BASE_URL}#inquiry`} class="inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors uppercase tracking-wider whitespace-nowrap">
+              Start Your Journey
             </a>
           </div>
           
@@ -131,8 +125,11 @@ const isActive = (path: string) => {
           <a href={`${import.meta.env.BASE_URL}mission`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('mission') || isActive('/mission') ? 'border-l-4 border-dojo-red' : ''}`}>Mission</a>
           <a href={`${import.meta.env.BASE_URL}events`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('events') || isActive('/events') ? 'border-l-4 border-dojo-red' : ''}`}>Events</a>
           <a href={`${import.meta.env.BASE_URL}labs`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('labs') || isActive('/labs') ? 'border-l-4 border-dojo-red' : ''}`}>DOJO Labs</a>
-          <a href={`${import.meta.env.BASE_URL}friends`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('friends') || isActive('/friends') ? 'border-l-4 border-dojo-red' : ''}`}>Friends of DOJO</a>
-          <a href={`${import.meta.env.BASE_URL}gallery`} class={`block px-3 py-2 uppercase tracking-wider text-sm text-dojo-red hover:text-dojo-black ${isActive('gallery') || isActive('/gallery') ? 'border-l-4 border-dojo-red' : ''}`}>Gallery</a>
+          <div class="pt-2 border-t border-dojo-gray mt-2">
+            <a href={`${import.meta.env.BASE_URL}#inquiry`} class="block w-full text-center px-4 py-2 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 transition-colors uppercase tracking-wider">
+              Start Your Journey
+            </a>
+          </div>
         </div>
       </div>
     </nav>
@@ -161,7 +158,6 @@ const isActive = (path: string) => {
               <li><a href={`${import.meta.env.BASE_URL}mission`} class="text-white hover:text-dojo-red transition-colors text-sm">Mission</a></li>
               <li><a href={`${import.meta.env.BASE_URL}events`} class="text-white hover:text-dojo-red transition-colors text-sm">Events</a></li>
               <li><a href={`${import.meta.env.BASE_URL}labs`} class="text-white hover:text-dojo-red transition-colors text-sm">DOJO Labs</a></li>
-              <li><a href={`${import.meta.env.BASE_URL}friends`} class="text-white hover:text-dojo-red transition-colors text-sm">Friends of DOJO</a></li>
             </ul>
           </div>
           
@@ -169,7 +165,6 @@ const isActive = (path: string) => {
             <h4 class="font-inter font-semibold mb-4 text-white">Connect</h4>
             <ul class="space-y-2">
               <li><a href={`${import.meta.env.BASE_URL}#inquiry`} class="text-white hover:text-dojo-red transition-colors text-sm">Inquire</a></li>
-              <li><a href={`${import.meta.env.BASE_URL}gallery`} class="text-white hover:text-dojo-red transition-colors text-sm">Gallery</a></li>
             </ul>
           </div>
         </div>
