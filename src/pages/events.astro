@@ -41,8 +41,8 @@ const eventTypes = [
   },
   {
     category: "Culinary",
-    title: "Cooking Lessons",
-    description: "Hands-on culinary experiences led by expert chefs. Learn new techniques, explore diverse cuisines, and enjoy the fruits of your labor with fellow members.",
+    title: "Culinary Experiences",
+    description: "Hands-on culinary experiences led by expert chefs. From cooking lessons to tastings and workshops, explore diverse cuisines and enjoy the fruits of your labor with fellow members.",
     frequency: "Periodic",
     image: `${import.meta.env.BASE_URL}images/events/cooking.jpg`
   }
@@ -58,12 +58,17 @@ const eventTypes = [
         <p class="text-xl text-dojo-light max-w-3xl mx-auto mb-8">
           DOJO hosts a curated calendar of events designed to challenge, connect, and elevate our members.
         </p>
-        <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors">
-          Inquire About Venue Rental
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors">
+            Inquire About Venue Rental
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <a href={`${import.meta.env.BASE_URL}#inquiry`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-500 transition-colors">
+            Start Your Journey
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -162,11 +167,11 @@ const eventTypes = [
         
         <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
           <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Cooking Lessons</span>
+            <span>Culinary Experiences</span>
           </div>
           <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Cooking Lessons</h3>
-            <p class="text-dojo-gray">Hands-on culinary experiences led by expert chefs. Perfect for team building, private groups, or special occasions.</p>
+            <h3 class="font-inter font-bold text-xl mb-3">Culinary Experiences</h3>
+            <p class="text-dojo-gray">Hands-on culinary experiences led by expert chefs. From cooking lessons to tastings and workshops, perfect for team building, private groups, or special occasions.</p>
           </div>
         </div>
       </div>

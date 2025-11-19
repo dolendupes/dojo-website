@@ -1,84 +1,84 @@
 ---
-// Venue rental inquiry form
+// Residency inquiry form
 ---
 
-<form id="venue-rental-form" class="max-w-xl mx-auto">
+<form id="residency-inquiry-form" class="max-w-xl mx-auto">
   <!-- Required Fields -->
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
     <div>
-      <label for="venue-first-name" class="block text-sm font-medium text-white">
+      <label for="residency-first-name" class="block text-sm font-medium text-white">
         First Name <span class="text-dojo-light">*</span>
       </label>
       <input
         type="text"
         name="first-name"
-        id="venue-first-name"
+        id="residency-first-name"
         required
         class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
       />
     </div>
     
     <div>
-      <label for="venue-last-name" class="block text-sm font-medium text-white">
+      <label for="residency-last-name" class="block text-sm font-medium text-white">
         Last Name <span class="text-dojo-light">*</span>
       </label>
       <input
         type="text"
         name="last-name"
-        id="venue-last-name"
+        id="residency-last-name"
         required
         class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
       />
     </div>
     
     <div class="sm:col-span-2">
-      <label for="venue-email" class="block text-sm font-medium text-white">
+      <label for="residency-email" class="block text-sm font-medium text-white">
         Email <span class="text-dojo-light">*</span>
       </label>
       <input
         type="email"
         name="email"
-        id="venue-email"
+        id="residency-email"
         required
         class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
       />
     </div>
     
     <div class="sm:col-span-2">
-      <label for="venue-phone" class="block text-sm font-medium text-white">
+      <label for="residency-phone" class="block text-sm font-medium text-white">
         Phone Number <span class="text-dojo-light text-xs">(optional)</span>
       </label>
       <input
         type="tel"
         name="phone"
-        id="venue-phone"
+        id="residency-phone"
         class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
       />
     </div>
     
     <div class="sm:col-span-2">
-      <label for="venue-company" class="block text-sm font-medium text-white">
+      <label for="residency-company" class="block text-sm font-medium text-white">
         Company / Organization <span class="text-dojo-light text-xs">(optional)</span>
       </label>
       <input
         type="text"
         name="company"
-        id="venue-company"
+        id="residency-company"
         class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
       />
     </div>
     
     <div class="sm:col-span-2">
-      <label for="venue-interest" class="block text-sm font-medium text-white">
+      <label for="residency-interest" class="block text-sm font-medium text-white">
         Tell us why you're reaching out <span class="text-dojo-light">*</span>
       </label>
       <textarea
-        id="venue-interest"
+        id="residency-interest"
         name="interest"
         rows="4"
         required
         class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
-        placeholder="Are you planning an event? Want to learn more about our spaces? Have questions about how we work? Let us know..."
+        placeholder="Are you interested in Startup Studio or Company Residency? Tell us about your venture or company and what you're looking for..."
       ></textarea>
     </div>
   </div>
@@ -87,15 +87,15 @@
   <div class="mt-8 pt-8 border-t border-white/20">
     <button
       type="button"
-      id="toggle-details"
+      id="toggle-residency-details"
       class="w-full flex items-center justify-between text-left p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
     >
       <div>
         <div class="text-sm font-medium text-white mb-1">Want to be more specific?</div>
-        <div class="text-xs text-dojo-light">Share event details, dates, guest count, and more</div>
+        <div class="text-xs text-dojo-light">Share details about your venture, team size, space needs, and more</div>
       </div>
       <svg
-        id="toggle-icon"
+        id="toggle-residency-icon"
         class="w-5 h-5 text-white transform transition-transform"
         fill="none"
         stroke="currentColor"
@@ -105,63 +105,83 @@
       </svg>
     </button>
     
-    <div id="details-section" class="hidden mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+    <div id="residency-details-section" class="hidden mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
       <div class="sm:col-span-2">
-        <label for="venue-event-type" class="block text-sm font-medium text-white">
-          Event Type <span class="text-dojo-light text-xs">(optional)</span>
+        <label for="residency-type" class="block text-sm font-medium text-white">
+          Residency Type <span class="text-dojo-light text-xs">(optional)</span>
         </label>
         <select
-          id="venue-event-type"
-          name="event-type"
+          id="residency-type"
+          name="residency-type"
           class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white focus:border-dojo-red focus:ring-dojo-red"
         >
-          <option value="">Select an event type...</option>
-          <option value="bridal-groom">Bridal & Groom Party</option>
-          <option value="corporate">Corporate Event</option>
-          <option value="cocktail">Cocktail Party</option>
-        <option value="bridal-suite">Bridal Get-Ready Room</option>
-        <option value="tasting">Private Tasting</option>
-        <option value="cooking">Culinary Experiences</option>
-        <option value="other">Other</option>
+          <option value="">Select a residency type...</option>
+          <option value="startup-studio">Startup Studio</option>
+          <option value="company-residency">Company Residency</option>
+          <option value="not-sure">Not Sure Yet</option>
         </select>
       </div>
       
       <div class="sm:col-span-2">
-        <label for="venue-date" class="block text-sm font-medium text-white">
-          Preferred Date(s) <span class="text-dojo-light text-xs">(optional)</span>
-        </label>
-        <input
-          type="text"
-          name="date"
-          id="venue-date"
-          placeholder="e.g., March 15, 2025 or March 15-16, 2025"
-          class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
-        />
-      </div>
-      
-      <div class="sm:col-span-2">
-        <label for="venue-guests" class="block text-sm font-medium text-white">
-          Expected Number of Guests <span class="text-dojo-light text-xs">(optional)</span>
+        <label for="residency-team-size" class="block text-sm font-medium text-white">
+          Team Size <span class="text-dojo-light text-xs">(optional)</span>
         </label>
         <input
           type="number"
-          name="guests"
-          id="venue-guests"
+          name="team-size"
+          id="residency-team-size"
           min="1"
+          placeholder="Number of team members"
           class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
         />
       </div>
       
       <div class="sm:col-span-2">
-        <label for="venue-details" class="block text-sm font-medium text-white">
-          Additional Event Details <span class="text-dojo-light text-xs">(optional)</span>
+        <label for="residency-space-needs" class="block text-sm font-medium text-white">
+          Space Needs <span class="text-dojo-light text-xs">(optional)</span>
+        </label>
+        <select
+          id="residency-space-needs"
+          name="space-needs"
+          class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white focus:border-dojo-red focus:ring-dojo-red"
+        >
+          <option value="">Select space needs...</option>
+          <option value="hot-desk">Hot Desk</option>
+          <option value="dedicated-desk">Dedicated Desk</option>
+          <option value="private-office">Private Office</option>
+          <option value="meeting-room">Meeting Room Access</option>
+          <option value="flexible">Flexible / Not Sure</option>
+        </select>
+      </div>
+      
+      <div class="sm:col-span-2">
+        <label for="residency-stage" class="block text-sm font-medium text-white">
+          Stage <span class="text-dojo-light text-xs">(optional)</span>
+        </label>
+        <select
+          id="residency-stage"
+          name="stage"
+          class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white focus:border-dojo-red focus:ring-dojo-red"
+        >
+          <option value="">Select stage...</option>
+          <option value="idea">Idea Stage</option>
+          <option value="mvp">MVP / Prototype</option>
+          <option value="early-revenue">Early Revenue</option>
+          <option value="growth">Growth Stage</option>
+          <option value="established">Established Company</option>
+        </select>
+      </div>
+      
+      <div class="sm:col-span-2">
+        <label for="residency-details" class="block text-sm font-medium text-white">
+          Additional Details <span class="text-dojo-light text-xs">(optional)</span>
         </label>
         <textarea
-          id="venue-details"
+          id="residency-details"
           name="details"
           rows="4"
           class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
-          placeholder="Special requirements, setup needs, catering preferences, etc."
+          placeholder="Funding status, timeline, special requirements, etc."
         ></textarea>
       </div>
     </div>
@@ -172,15 +192,15 @@
       type="submit"
       class="w-full bg-dojo-red text-white py-3 px-6 rounded font-semibold hover:bg-red-700 transition-colors"
     >
-      Submit Venue Rental Inquiry
+      Submit Residency Inquiry
     </button>
   </div>
   
   <p class="text-sm text-dojo-light mt-4 text-center">
-    We'll review your request and get back to you within 2-3 business days.
+    We'll review your inquiry and get back to you within 2-3 business days.
   </p>
   
-  <div id="venue-form-message" class="mt-4 hidden">
+  <div id="residency-form-message" class="mt-4 hidden">
     <div class="rounded-md p-4 bg-white/10 border border-white/20">
       <p class="text-sm text-white"></p>
     </div>
@@ -189,9 +209,9 @@
 
 <script>
   // Toggle details section
-  const toggleButton = document.getElementById('toggle-details');
-  const detailsSection = document.getElementById('details-section');
-  const toggleIcon = document.getElementById('toggle-icon');
+  const toggleButton = document.getElementById('toggle-residency-details');
+  const detailsSection = document.getElementById('residency-details-section');
+  const toggleIcon = document.getElementById('toggle-residency-icon');
   
   toggleButton?.addEventListener('click', () => {
     const isHidden = detailsSection?.classList.contains('hidden');
@@ -205,8 +225,8 @@
   });
   
   // Form submission
-  const form = document.getElementById('venue-rental-form') as HTMLFormElement;
-  const formMessage = document.getElementById('venue-form-message');
+  const form = document.getElementById('residency-inquiry-form') as HTMLFormElement;
+  const formMessage = document.getElementById('residency-form-message');
   const messageText = formMessage?.querySelector('p');
   
   form?.addEventListener('submit', async (e) => {
@@ -217,7 +237,7 @@
     
     // Log the submission for now
     // Replace with your database endpoint when ready
-    console.log('Venue rental inquiry submission:', data);
+    console.log('Residency inquiry submission:', data);
     
     // Show confirmation message
     if (formMessage && messageText) {
@@ -238,3 +258,4 @@
     }, 5000);
   });
 </script>
+
