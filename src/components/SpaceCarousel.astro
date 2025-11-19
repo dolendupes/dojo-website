@@ -1,0 +1,166 @@
+---
+interface Props {
+  images: Array<{ name: string; image: string }>;
+  carouselId: string;
+  title: string;
+  isLogo?: boolean;
+}
+
+const { images, carouselId, title, isLogo = false } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<div class="relative">
+  <!-- Title -->
+  <h3 class="text-center mb-4 font-inter font-bold text-lg text-dojo-black">{title}</h3>
+  
+  <div class={`space-carousel-${carouselId} space-carousel-wrapper relative`}>
+    <div class="overflow-hidden rounded-lg">
+      <div class={`carousel-track-${carouselId} carousel-track flex transition-transform duration-500 ease-in-out`}>
+        {images.map((space, index) => {
+          const imagePath = `${baseUrl}images/space/${space.image}`;
+          return (
+            <div class="carousel-slide min-w-full flex-shrink-0">
+              <div class={`relative h-64 md:h-80 rounded-lg overflow-hidden ${isLogo ? 'bg-white flex items-center justify-center p-8' : 'bg-dojo-gray'}`}>
+                <img 
+                  src={imagePath}
+                  alt={space.name}
+                  class={isLogo ? 'max-w-[65%] max-h-[65%] object-contain' : 'w-full h-full object-cover'}
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class={`absolute inset-0 ${isLogo ? 'bg-white' : 'bg-dojo-gray'} flex items-center justify-center text-white`} style="display: none;">
+                  <span>{space.name}</span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+    
+    {images.length > 1 && (
+      <>
+        <!-- Navigation -->
+        <button 
+          class={`carousel-prev-${carouselId} absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dojo-black shadow-lg p-2 rounded-full transition-colors z-10`}
+          aria-label="Previous image"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        
+        <button 
+          class={`carousel-next-${carouselId} absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-dojo-black shadow-lg p-2 rounded-full transition-colors z-10`}
+          aria-label="Next image"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+        
+        <!-- Indicators -->
+        <div class="flex justify-center space-x-2 mt-4">
+          {images.map((_, index) => (
+            <button 
+              class={`carousel-indicator-${carouselId} w-2 h-2 rounded-full transition-all ${
+                index === 0 ? 'bg-dojo-red w-6' : 'bg-dojo-gray'
+              }`}
+              data-slide-to={index}
+              aria-label={`Go to slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+      </>
+    )}
+  </div>
+</div>
+
+<script is:inline define:vars={{ carouselId }}>
+  (function() {
+    const id = carouselId;
+    
+    function initCarousel() {
+      const wrapper = document.querySelector(`.space-carousel-${id}`);
+      if (!wrapper) {
+        setTimeout(initCarousel, 50);
+        return;
+      }
+      
+      const track = wrapper.querySelector(`.carousel-track-${id}`);
+      const slides = wrapper.querySelectorAll(`.carousel-track-${id} .carousel-slide`);
+      const prevButton = wrapper.querySelector(`.carousel-prev-${id}`);
+      const nextButton = wrapper.querySelector(`.carousel-next-${id}`);
+      const indicators = wrapper.querySelectorAll(`.carousel-indicator-${id}`);
+      
+      if (!track || slides.length === 0) {
+        setTimeout(initCarousel, 50);
+        return;
+      }
+      
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+      
+      // Set initial position
+      track.style.transform = 'translateX(0%)';
+      
+      function updateCarousel() {
+        // Update track position
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+          if (index === currentSlide) {
+            indicator.classList.add('bg-dojo-red', 'w-6');
+            indicator.classList.remove('bg-dojo-gray');
+          } else {
+            indicator.classList.remove('bg-dojo-red', 'w-6');
+            indicator.classList.add('bg-dojo-gray');
+          }
+        });
+      }
+      
+      // Initialize
+      updateCarousel();
+      
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+      }
+      
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+      }
+      
+      // Event listeners
+      prevButton?.addEventListener('click', prevSlide);
+      nextButton?.addEventListener('click', nextSlide);
+      
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          currentSlide = index;
+          updateCarousel();
+        });
+      });
+    }
+    
+    // Wait for DOM
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCarousel);
+    } else {
+      initCarousel();
+    }
+  })();
+</script>
+
+<style>
+  .space-carousel-wrapper .carousel-track {
+    display: flex;
+  }
+  
+  .space-carousel-wrapper .carousel-slide {
+    flex-shrink: 0;
+    width: 100%;
+  }
+</style>

@@ -2,6 +2,80 @@
 import Layout from '../layouts/Layout.astro';
 import PhilosophyCarousel from '../components/PhilosophyCarousel.astro';
 import InquiryForm from '../components/InquiryForm.astro';
+import SpaceCarousel from '../components/SpaceCarousel.astro';
+
+// Space images configuration
+const spaceConfig = [
+  { 
+    name: 'Training Floor', 
+    visible: true,
+    carousel: true,
+    images: [
+      { name: 'Training Floor', image: 'training-floor-1.jpg' },
+      { name: 'Training Floor', image: 'training-floor-2.jpg' },
+      { name: 'Training Floor', image: 'training-floor-3.jpg' }
+    ]
+  },
+  { 
+    name: 'Recovery Zone', 
+    visible: true,
+    carousel: true,
+    images: [
+      { name: 'Recovery Zone', image: 'recovery-zone-1.jpg' },
+      { name: 'Recovery Zone', image: 'recovery-zone-2.jpg' }
+    ]
+  },
+  { 
+    name: "Warrior's Den", 
+    visible: true,
+    carousel: true,
+    images: [
+      { name: "Warrior's Den", image: 'warriors-den-1.jpg' },
+      { name: "Warrior's Den", image: 'warriors-den-2.jpg' },
+      { name: "Warrior's Den", image: 'warriors-den-3.jpg' }
+    ]
+  },
+  { 
+    name: 'Event Space', 
+    visible: true,
+    carousel: true,
+    images: [
+      { name: 'Event Space', image: 'event-space-1.jpg' },
+      { name: 'Event Space', image: 'event-space-2.jpg' },
+      { name: 'Event Space', image: 'event-space-3.jpg' }
+    ]
+  },
+  { 
+    name: 'DOJO Labs', 
+    visible: true,
+    carousel: true,
+    images: [
+      { name: 'DOJO Labs', image: 'dojo-labs-1.jpg' },
+      { name: 'DOJO Labs', image: 'dojo-labs-2.jpg' },
+      { name: 'DOJO Labs', image: 'dojo-labs-3.png' }
+    ]
+  },
+  // Hidden until images are available
+  { 
+    name: 'Community Space', 
+    visible: false,
+    carousel: false,
+    images: [
+      { name: 'Community Space', image: 'community-space.jpg' }
+    ]
+  },
+  { 
+    name: 'Meeting Rooms', 
+    visible: false,
+    carousel: false,
+    images: [
+      { name: 'Meeting Rooms', image: 'meeting-rooms.jpg' }
+    ]
+  }
+];
+
+// Filter to only show visible spaces
+const visibleSpaces = spaceConfig.filter(space => space.visible);
 ---
 
 <Layout title="DOJO Tampa - Transform Through Strength, Balance, and Community">
@@ -75,8 +149,50 @@ import InquiryForm from '../components/InquiryForm.astro';
     </div>
   </section>
 
-  <!-- DOJO Labs -->
+  <!-- Gallery Preview -->
   <section class="py-20 bg-dojo-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-inter font-bold text-4xl mb-12 text-center">The Space</h2>
+      
+      <div class="flex flex-wrap justify-center gap-6">
+        {visibleSpaces.map((space, index) => {
+          const carouselId = `space-${index}`;
+          const itemClass = "w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]";
+          if (space.carousel && space.images.length > 1) {
+            // Carousel for multiple images
+            const isLogo = space.name === 'DOJO Labs';
+            return (
+              <div class={itemClass}>
+                <SpaceCarousel images={space.images} carouselId={carouselId} title={space.name} isLogo={isLogo} />
+              </div>
+            );
+          } else {
+            // Single static image
+            const imagePath = `${import.meta.env.BASE_URL}images/space/${space.images[0].image}`;
+            return (
+              <div class={itemClass}>
+                <h3 class="text-center mb-4 font-inter font-bold text-lg text-dojo-black">{space.name}</h3>
+                <div class="relative h-64 md:h-80 rounded-lg overflow-hidden bg-dojo-gray group">
+                  <img 
+                    src={imagePath}
+                    alt={space.name}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  />
+                  <div class="absolute inset-0 bg-dojo-gray flex items-center justify-center text-white" style="display: none;">
+                    <span>{space.name}</span>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- DOJO Labs -->
+  <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="font-inter font-bold text-4xl mb-4">DOJO Labs</h2>
@@ -87,74 +203,71 @@ import InquiryForm from '../components/InquiryForm.astro';
       
       <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
         <div>
-          <h3 class="font-inter font-bold text-xl mb-4">Startup Studio</h3>
+          <div class="flex items-center mb-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-dojo-red/10 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-dojo-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+            <h3 class="font-inter font-bold text-xl">Startup Studio</h3>
+          </div>
           <p class="text-dojo-gray mb-4">
             DOJO Labs incubates and accelerates member-led ventures. From ideation to execution, we provide the space, connections, and collaborative energy to turn concepts into companies.
           </p>
-          <ul class="space-y-2 text-dojo-gray">
+          <ul class="space-y-3 text-dojo-gray">
             <li class="flex items-start">
-              <span class="text-dojo-red mr-2">•</span>
-              Dedicated workspace and meeting rooms
+              <svg class="w-5 h-5 text-dojo-red mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+              <span>Dedicated workspace and meeting rooms</span>
             </li>
             <li class="flex items-start">
-              <span class="text-dojo-red mr-2">•</span>
-              Access to DOJO's network of entrepreneurs and advisors
+              <svg class="w-5 h-5 text-dojo-red mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+              <span>Access to DOJO's network of entrepreneurs and advisors</span>
             </li>
             <li class="flex items-start">
-              <span class="text-dojo-red mr-2">•</span>
-              Regular pitch sessions and feedback circles
+              <svg class="w-5 h-5 text-dojo-red mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span>Regular pitch sessions and feedback circles</span>
             </li>
           </ul>
         </div>
         
         <div>
-          <h3 class="font-inter font-bold text-xl mb-4">Partner Residency</h3>
+          <div class="flex items-center mb-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-dojo-red/10 rounded-lg flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-dojo-red" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <h3 class="font-inter font-bold text-xl">Partner Residency</h3>
+          </div>
           <p class="text-dojo-gray mb-4">
             Companies within our extended network maintain a presence at DOJO, creating organic opportunities for collaboration, talent acquisition, and strategic partnerships.
           </p>
-          <ul class="space-y-2 text-dojo-gray">
+          <ul class="space-y-3 text-dojo-gray">
             <li class="flex items-start">
-              <span class="text-dojo-red mr-2">•</span>
-              Hot desk and meeting space access
+              <svg class="w-5 h-5 text-dojo-red mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+              </svg>
+              <span>Hot desk and meeting space access</span>
             </li>
             <li class="flex items-start">
-              <span class="text-dojo-red mr-2">•</span>
-              Integration with DOJO member community
+              <svg class="w-5 h-5 text-dojo-red mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+              <span>Integration with DOJO member community</span>
             </li>
             <li class="flex items-start">
-              <span class="text-dojo-red mr-2">•</span>
-              Cross-pollination of ideas and opportunities
+              <svg class="w-5 h-5 text-dojo-red mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+              <span>Cross-pollination of ideas and opportunities</span>
             </li>
           </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Preview -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-inter font-bold text-4xl mb-12 text-center">The Space</h2>
-      
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {/* Placeholder for images */}
-        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
-          <span>Training Floor</span>
-        </div>
-        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
-          <span>DOJO Labs</span>
-        </div>
-        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
-          <span>Community Space</span>
-        </div>
-        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
-          <span>Recovery Zone</span>
-        </div>
-        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
-          <span>Meeting Rooms</span>
-        </div>
-        <div class="bg-dojo-gray h-64 rounded-lg flex items-center justify-center text-white">
-          <span>Event Space</span>
         </div>
       </div>
     </div>
