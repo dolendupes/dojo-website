@@ -114,8 +114,14 @@ const { title, description = "DOJO Tampa - A private collective where Tampa's le
           </div>
         </div>
         
-        <div class="border-t border-dojo-gray mt-8 pt-8 text-center text-sm text-dojo-gray">
-          <p>&copy; 2025 DOJO TAMPA LLC. All rights reserved.</p>
+        <div class="border-t border-dojo-gray mt-8 pt-8">
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 text-sm text-dojo-gray">
+            <p>&copy; 2025 DOJO TAMPA LLC. All rights reserved.</p>
+            <span class="hidden md:inline">|</span>
+            <a href={`${import.meta.env.BASE_URL}privacy-policy`} class="hover:text-dojo-red transition-colors">Privacy Policy</a>
+            <span class="hidden md:inline">|</span>
+            <a href={`${import.meta.env.BASE_URL}terms-conditions`} class="hover:text-dojo-red transition-colors">Terms and Conditions</a>
+          </div>
         </div>
       </div>
     </footer>
