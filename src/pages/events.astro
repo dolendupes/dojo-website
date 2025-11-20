@@ -9,44 +9,53 @@ const eventTypes = [
     title: "Member Mixers",
     description: "Curated networking events where meaningful connections replace small talk. Build relationships that matter.",
     frequency: "Monthly",
-    image: `${import.meta.env.BASE_URL}images/events/networking.jpg`
+    image: `${import.meta.env.BASE_URL}images/events/networking.jpg`,
+    visible: true
   },
   {
     category: "Workshops",
     title: "Executive Workshops",
     description: "Learn from successful entrepreneurs and industry leaders. Topics range from scaling businesses to optimizing performance.",
     frequency: "Periodic",
-    image: `${import.meta.env.BASE_URL}images/events/workshop.jpg`
+    image: `${import.meta.env.BASE_URL}images/events/workshop.jpg`,
+    visible: true
   },
   {
-    category: "Private Events",
-    title: "Member-Hosted Events",
+    category: "Member Events",
+    title: "Member-Hosted Gatherings",
     description: "Members can reserve our spaces for private events, from team offsites to product launches.",
     frequency: "On Request",
-    image: `${import.meta.env.BASE_URL}images/events/private.jpg`
+    image: `${import.meta.env.BASE_URL}images/events/private.jpg`,
+    visible: false
   },
   {
     category: "Community",
     title: "Family Events",
     description: "Building a multi-generational community with events that bring families together.",
     frequency: "Seasonal",
-    image: `${import.meta.env.BASE_URL}images/events/family.jpg`
+    image: `${import.meta.env.BASE_URL}images/events/family.jpg`,
+    visible: false
   },
   {
     category: "Training",
     title: "High-Performance Training Sessions",
     description: "Daily group training designed for peak performers. From strength and conditioning to martial arts and mobility work.",
     frequency: "Daily",
-    image: `${import.meta.env.BASE_URL}images/events/training.jpg`
+    image: `${import.meta.env.BASE_URL}images/events/training.jpg`,
+    visible: true
   },
   {
     category: "Culinary",
     title: "Culinary Experiences",
-    description: "Hands-on culinary experiences led by expert chefs. From cooking lessons to tastings and workshops, explore diverse cuisines and enjoy the fruits of your labor with fellow members.",
+    description: "Hands-on culinary experiences led by our chef in residence, often joined by talented colleagues from his network. From cooking lessons to tastings and workshops, explore diverse cuisines and enjoy the fruits of your labor with fellow members.",
     frequency: "Periodic",
-    image: `${import.meta.env.BASE_URL}images/events/cooking.jpg`
+    image: `${import.meta.env.BASE_URL}images/events/cooking.jpg`,
+    visible: true
   }
 ];
+
+// Filter to only show visible events
+const visibleEvents = eventTypes.filter(event => event.visible);
 ---
 
 <Layout title="Events - DOJO Tampa">
@@ -54,100 +63,74 @@ const eventTypes = [
   <section class="bg-dojo-black text-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4 text-dojo-red">Events & Experiences</h1>
+        <h1 class="font-inter font-bold text-4xl md:text-5xl mb-4 text-dojo-red">Experiences & Private Events</h1>
         <p class="text-xl text-dojo-light max-w-3xl mx-auto mb-8">
-          DOJO hosts a curated calendar of events designed to challenge, connect, and elevate our members.
+          DOJO hosts member events and experiences, and our venue is available for private bookings. Every gathering is designed with intention and executed with care.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors">
-            Inquire About Venue Rental
+            Book an Event
             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
-          </a>
-          <a href={`${import.meta.env.BASE_URL}#inquiry`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-500 transition-colors">
-            Start Your Journey
           </a>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Venue Rental for Non-Members -->
+  <!-- Book an Event for Non-Members -->
   <section id="venue-rental-options" class="py-20 bg-dojo-light">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="font-inter font-bold text-4xl mb-4">Venue Rental</h2>
-        <p class="text-xl text-dojo-gray max-w-3xl mx-auto">
-          DOJO's versatile spaces are available for private events. Perfect for celebrations, corporate gatherings, and special occasions.
+        <h2 class="font-inter font-bold text-4xl mb-4">Book an Event</h2>
+        <p class="text-xl text-dojo-gray max-w-3xl mx-auto mb-8">
+          We create and deliver custom experiences that leave a lasting impression. Our distinctive venue features versatile indoor and outdoor spaces, and our team works with you to craft something truly memorable.
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Bridal Party Prep</span>
+      <!-- The Event Team -->
+      <div class="bg-white rounded-lg shadow-lg p-8 md:p-12 mb-8">
+        <h3 class="font-inter font-bold text-2xl mb-6 text-center">The Event Team</h3>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="font-inter font-semibold text-lg mb-3 text-dojo-red">Culinary</h4>
+            <p class="text-dojo-gray mb-4">
+              Our chef brings exceptional culinary talent to events, from intimate tastings to larger gatherings. He has led kitchens at established restaurants and brings that expertise to every experience.
+            </p>
+            <p class="text-dojo-gray">
+              We have strong connections with other talented chefs, restaurants, and caterers, ensuring we can deliver exactly what your event requires.
+            </p>
           </div>
-          <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Bridal Party Prep</h3>
-            <p class="text-dojo-gray">Prepare for your special day in style and class. Our elegant spaces provide the perfect setting for bridal parties to get ready with mirrors, seating, and all the amenities you need for a seamless preparation experience.</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Groom Party Prep</span>
-          </div>
-          <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Groom Party Prep</h3>
-            <p class="text-dojo-gray">Prepare for your wedding day in a sophisticated setting. Our refined spaces offer the perfect environment for grooms and their parties to get ready with style, elegance, and all necessary amenities.</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Corporate</span>
-          </div>
-          <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Corporate Events</h3>
-            <p class="text-dojo-gray">Host team meetings, offsites, product launches, and corporate celebrations in our professional event spaces.</p>
+          
+          <div>
+            <h4 class="font-inter font-semibold text-lg mb-3 text-dojo-red">Event Planning</h4>
+            <p class="text-dojo-gray mb-4">
+              Our event team brings experience from premier local venues, coordinating details and logistics so you can focus on your guests.
+            </p>
+            <p class="text-dojo-gray">
+              Our creative group brings fresh ideas and innovative approaches. We have great connections to other chefs, creatives, restaurants, and caterers, allowing us to create unique experiences that exceed expectations.
+            </p>
           </div>
         </div>
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Cocktail Parties</span>
-          </div>
-          <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Cocktail Parties</h3>
-            <p class="text-dojo-gray">Sophisticated spaces for networking events, celebrations, and social gatherings with full bar service capabilities.</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Tastings</span>
-          </div>
-          <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Private Tastings</h3>
-            <p class="text-dojo-gray">Host exclusive wine, whiskey, or culinary tastings in an intimate setting designed for connoisseurs.</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-          <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
-            <span>Culinary Experiences</span>
-          </div>
-          <div class="p-6">
-            <h3 class="font-inter font-bold text-xl mb-3">Culinary Experiences</h3>
-            <p class="text-dojo-gray">Hands-on culinary experiences led by expert chefs. From cooking lessons to tastings and workshops, perfect for team building, private groups, or special occasions.</p>
-          </div>
+      </div>
+      
+      <!-- Capabilities -->
+      <div class="bg-white rounded-lg shadow-lg p-8 md:p-12">
+        <h3 class="font-inter font-bold text-2xl mb-6 text-center">Our Capabilities</h3>
+        <div class="space-y-4 text-dojo-gray">
+          <p class="text-lg">
+            Our amenities, combined with our connections to creatives, restaurants, caterers, and other partners, allow us to accommodate a wide range of event types and styles.
+          </p>
+          <p>
+            Whether you're planning an intimate gathering, corporate event, celebration, or something entirely unique, we'd love to discuss how we can help make it happen.
+          </p>
         </div>
       </div>
       
       <div class="text-center mt-12">
         <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors">
-          Inquire About Venue Rental
+          Book an Event
           <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
@@ -160,14 +143,14 @@ const eventTypes = [
   <section id="member-events" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="font-inter font-bold text-4xl mb-4">What Happens at DOJO</h2>
+        <h2 class="font-inter font-bold text-4xl mb-4">Member Experiences</h2>
         <p class="text-xl text-dojo-gray max-w-3xl mx-auto">
-          From daily training sessions to exclusive networking events, every gathering is designed with intention.
+          Unique community-building activities designed to forge deeper connections and create lasting relationships among members.
         </p>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {eventTypes.map((event) => (
+        {visibleEvents.map((event) => (
           <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
             <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
               <span>{event.category}</span>
@@ -184,48 +167,45 @@ const eventTypes = [
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- Event Philosophy -->
-  <section id="philosophy" class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="font-inter font-bold text-4xl mb-8 text-center">Events with Purpose</h2>
       
-      <div class="space-y-6 text-lg text-dojo-gray">
-        <p>
-          Every DOJO event serves a purpose beyond the immediate activity. Training sessions build mental resilience alongside physical strength. Networking events create genuine partnerships, not just LinkedIn connections. Workshops deliver actionable insights from practitioners who've actually done the work.
-        </p>
+      <!-- Expandable "Events with Purpose" Section -->
+      <div class="mt-12 text-center">
+        <button
+          id="purpose-toggle"
+          class="inline-flex items-center px-6 py-3 text-sm font-medium text-dojo-red bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+        >
+          <span id="purpose-toggle-text">Our Events with Purpose Approach</span>
+          <svg id="purpose-toggle-icon" class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+      
+      <div id="purpose-content" class="hidden mt-12 max-w-4xl mx-auto">
+        <h3 class="font-inter font-bold text-3xl mb-8 text-center">Events with Purpose</h3>
         
-        <p>
-          We believe in quality over quantity. Our events are carefully curated to bring together the right people at the right time. Whether you're pushing through a workout, sharing insights in a workshop, or connecting at a mixer, you're surrounded by individuals committed to excellence.
-        </p>
-        
-        <p>
-          Members don't just attend events – they help shape them. Your input determines our programming, ensuring that every gathering reflects the collective needs and ambitions of the DOJO community.
-        </p>
+        <div class="space-y-6 text-lg text-dojo-gray">
+          <p>
+            Every DOJO event serves a purpose beyond the immediate activity. Training sessions build mental resilience alongside physical strength. Networking events create genuine partnerships, not just LinkedIn connections. Workshops deliver actionable insights from practitioners who've actually done the work.
+          </p>
+          
+          <p>
+            We believe in quality over quantity. Our events are carefully curated to bring together the right people at the right time. Whether you're pushing through a workout, sharing insights in a workshop, or connecting at a mixer, you're surrounded by individuals committed to excellence.
+          </p>
+          
+          <p>
+            Members don't just attend events – they help shape them. Your input determines our programming, ensuring that every gathering reflects the collective needs and ambitions of the DOJO community.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Host an Event -->
-  <section id="host-event" class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-inter font-bold text-3xl mb-4">Host Your Event at DOJO</h2>
-      <p class="text-xl text-dojo-gray mb-8">
-        DOJO members have access to our event spaces for team gatherings, workshops, product launches, and private celebrations. Our versatile spaces and professional amenities provide the perfect backdrop for memorable events.
-      </p>
-      <a href={`${import.meta.env.BASE_URL}#inquiry`} class="bg-dojo-black text-white px-8 py-3 rounded font-semibold hover:bg-gray-800 transition-colors inline-block">
-        Inquire About Events
-      </a>
-    </div>
-  </section>
-
-  <!-- Venue Rental Form Section -->
+  <!-- Book an Event Form Section -->
   <section id="venue-rental" class="py-20 bg-dojo-black text-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="font-inter font-bold text-4xl mb-4">Venue Rental Inquiry</h2>
+        <h2 class="font-inter font-bold text-4xl mb-4">Book an Event</h2>
         <p class="text-xl text-dojo-light">
           Interested in hosting your event at DOJO? Fill out the form below and we'll get back to you with availability and pricing.
         </p>
@@ -235,3 +215,29 @@ const eventTypes = [
     </div>
   </section>
 </Layout>
+
+<script>
+  // Expandable "Events with Purpose" toggle
+  const purposeToggle = document.getElementById('purpose-toggle');
+  const purposeContent = document.getElementById('purpose-content');
+  const purposeToggleText = document.getElementById('purpose-toggle-text');
+  const purposeToggleIcon = document.getElementById('purpose-toggle-icon');
+  
+  if (purposeToggle && purposeContent) {
+    purposeToggle.addEventListener('click', () => {
+      const isExpanded = !purposeContent.classList.contains('hidden');
+      
+      if (isExpanded) {
+        purposeContent.classList.add('hidden');
+        purposeToggleText.textContent = 'Our Events with Purpose Approach';
+        purposeToggleIcon.style.transform = 'rotate(0deg)';
+      } else {
+        purposeContent.classList.remove('hidden');
+        purposeToggleText.textContent = 'Show Less';
+        purposeToggleIcon.style.transform = 'rotate(180deg)';
+        // Smooth scroll to the expanded content
+        purposeContent.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+</script>

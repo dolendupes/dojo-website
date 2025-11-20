@@ -131,13 +131,13 @@ const isLabsPage = isActive('labs') || isActive('/labs');
                         <svg class="w-4 h-4 text-dojo-red mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        <span class="text-xs font-semibold text-dojo-black uppercase tracking-wider">Venue Rental</span>
+                        <span class="text-xs font-semibold text-dojo-black uppercase tracking-wider">Private Events</span>
                       </div>
                       <a href={`${import.meta.env.BASE_URL}events#venue-rental-options`} class="block pl-6 py-1.5 hover:bg-red-50 hover:text-dojo-red transition-colors text-xs uppercase tracking-wider text-gray-600">
                         About
                       </a>
                       <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="block pl-6 py-1.5 hover:bg-red-50 hover:text-dojo-red transition-colors text-xs uppercase tracking-wider text-dojo-red font-medium">
-                        Inquire
+                        Book
                       </a>
                     </div>
                   </li>
@@ -283,14 +283,9 @@ const isLabsPage = isActive('labs') || isActive('/labs');
             </div>
             <span class="text-dojo-gray text-xs ml-4">|</span>
             {isEventsPage && (
-              <>
-                <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors uppercase tracking-wider whitespace-nowrap">
-                  Venue Rental
-                </a>
-                <a href={`${import.meta.env.BASE_URL}#inquiry`} class="inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-500 transition-colors uppercase tracking-wider whitespace-nowrap">
-                  Start Your Journey
-                </a>
-              </>
+              <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="inline-flex items-center px-4 py-2 text-xs font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 transition-colors uppercase tracking-wider whitespace-nowrap">
+                Book an Event
+              </a>
             )}
             {isLabsPage && (
               <>
@@ -348,14 +343,9 @@ const isLabsPage = isActive('labs') || isActive('/labs');
           </div>
           <div class="pt-2 border-t border-dojo-gray mt-2 space-y-2">
             {isEventsPage && (
-              <>
-                <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="block w-full text-center px-4 py-2 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 transition-colors uppercase tracking-wider">
-                  Venue Rental
-                </a>
-                <a href={`${import.meta.env.BASE_URL}#inquiry`} class="block w-full text-center px-4 py-2 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors uppercase tracking-wider">
-                  Start Your Journey
-                </a>
-              </>
+              <a href={`${import.meta.env.BASE_URL}events#venue-rental`} class="block w-full text-center px-4 py-2 text-sm font-medium text-white bg-dojo-red rounded-lg hover:bg-red-700 transition-colors uppercase tracking-wider">
+                Book an Event
+              </a>
             )}
             {isLabsPage && (
               <>
