@@ -1,8 +1,9 @@
 ---
 // Residency inquiry form
+import { formspreeUrls } from '../config/formspree.js';
 ---
 
-<form id="residency-inquiry-form" class="max-w-xl mx-auto">
+<form id="residency-inquiry-form" action={formspreeUrls.residency} method="POST" class="max-w-xl mx-auto">
   <!-- Required Fields -->
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
     <div>
@@ -207,7 +208,7 @@
   </div>
 </form>
 
-<script>
+<script define:vars={{ formspreeUrl: formspreeUrls.residency }}>
   // Toggle details section
   const toggleButton = document.getElementById('toggle-residency-details');
   const detailsSection = document.getElementById('residency-details-section');
@@ -228,34 +229,78 @@
   const form = document.getElementById('residency-inquiry-form') as HTMLFormElement;
   const formMessage = document.getElementById('residency-form-message');
   const messageText = formMessage?.querySelector('p');
+  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
   
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    if (!form || !formMessage || !messageText) return;
     
-    // Log the submission for now
-    // Replace with your database endpoint when ready
-    console.log('Residency inquiry submission:', data);
-    
-    // Show confirmation message
-    if (formMessage && messageText) {
-      formMessage.classList.remove('hidden');
-      messageText.textContent = 'Thank you for your inquiry. We\'ll review your request and get back to you within 2-3 business days.';
+    // Disable submit button to prevent double submissions
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
     }
     
-    // Reset form
-    form.reset();
+    const formData = new FormData(form);
     
-    // Collapse details section
-    detailsSection?.classList.add('hidden');
-    toggleIcon?.classList.remove('rotate-180');
-    
-    // Hide message after 5 seconds
-    setTimeout(() => {
-      formMessage?.classList.add('hidden');
-    }, 5000);
+    try {
+      const response = await fetch(formspreeUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Success
+        formMessage.classList.remove('hidden');
+        const messageDiv = formMessage.querySelector('div');
+        if (messageDiv) {
+          messageDiv.className = 'rounded-md p-4 bg-green-500/20 border border-green-500/50';
+        }
+        messageText.className = 'text-sm text-green-300 text-center';
+        messageText.textContent = 'Thank you for your inquiry. We\'ll review your request and get back to you within 2-3 business days.';
+        
+        // Reset form
+        form.reset();
+        
+        // Collapse details section
+        detailsSection?.classList.add('hidden');
+        toggleIcon?.classList.remove('rotate-180');
+        
+        // Scroll to message
+        formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        // Error from Formspree
+        const data = await response.json();
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      // Network error or other error
+      formMessage.classList.remove('hidden');
+      const messageDiv = formMessage.querySelector('div');
+      if (messageDiv) {
+        messageDiv.className = 'rounded-md p-4 bg-red-500/20 border border-red-500/50';
+      }
+      messageText.className = 'text-sm text-red-300 text-center';
+      messageText.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+      
+      // Scroll to message
+      formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      // Re-enable submit button
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit Residency Inquiry';
+      }
+      
+      // Hide message after 8 seconds
+      setTimeout(() => {
+        formMessage?.classList.add('hidden');
+      }, 8000);
+    }
   });
 </script>
 
