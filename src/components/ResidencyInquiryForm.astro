@@ -3,7 +3,7 @@
 import { formspreeUrls } from '../config/formspree.js';
 ---
 
-<form id="residency-inquiry-form" action={formspreeUrls.residency} method="POST" class="max-w-xl mx-auto">
+<form id="residency-inquiry-form" class="max-w-xl mx-auto">
   <!-- Required Fields -->
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
     <div>
@@ -79,7 +79,7 @@ import { formspreeUrls } from '../config/formspree.js';
         rows="4"
         required
         class="mt-1 block w-full rounded-md bg-white/10 border-gray-600 text-white placeholder-gray-400 focus:border-dojo-red focus:ring-dojo-red"
-        placeholder="Are you interested in Startup Studio or Company Residency? Tell us about your venture or company and what you're looking for..."
+        placeholder="Are you interested in Startup Studio, Company Residency, or Advisory Support? Tell us about your venture or company and what you're looking for..."
       ></textarea>
     </div>
   </div>
@@ -119,6 +119,7 @@ import { formspreeUrls } from '../config/formspree.js';
           <option value="">Select a residency type...</option>
           <option value="startup-studio">Startup Studio</option>
           <option value="company-residency">Company Residency</option>
+          <option value="advisory-support">Advisory & Strategic Guidance (Remote)</option>
           <option value="not-sure">Not Sure Yet</option>
         </select>
       </div>
@@ -209,32 +210,43 @@ import { formspreeUrls } from '../config/formspree.js';
 </form>
 
 <script define:vars={{ formspreeUrl: formspreeUrls.residency }}>
-  // Toggle details section
-  const toggleButton = document.getElementById('toggle-residency-details');
-  const detailsSection = document.getElementById('residency-details-section');
-  const toggleIcon = document.getElementById('toggle-residency-icon');
-  
-  toggleButton?.addEventListener('click', () => {
-    const isHidden = detailsSection?.classList.contains('hidden');
-    if (isHidden) {
-      detailsSection?.classList.remove('hidden');
-      toggleIcon?.classList.add('rotate-180');
-    } else {
-      detailsSection?.classList.add('hidden');
-      toggleIcon?.classList.remove('rotate-180');
+  function initResidencyForm() {
+    // Toggle details section
+    const toggleButton = document.getElementById('toggle-residency-details');
+    const detailsSection = document.getElementById('residency-details-section');
+    const toggleIcon = document.getElementById('toggle-residency-icon');
+    
+    if (toggleButton && detailsSection && toggleIcon) {
+      toggleButton.addEventListener('click', () => {
+        const isHidden = detailsSection.classList.contains('hidden');
+        if (isHidden) {
+          detailsSection.classList.remove('hidden');
+          toggleIcon.classList.add('rotate-180');
+        } else {
+          detailsSection.classList.add('hidden');
+          toggleIcon.classList.remove('rotate-180');
+        }
+      });
     }
-  });
   
-  // Form submission
-  const form = document.getElementById('residency-inquiry-form') as HTMLFormElement;
-  const formMessage = document.getElementById('residency-form-message');
-  const messageText = formMessage?.querySelector('p');
-  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
-  
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    // Form submission
+    function initResidencyFormSubmission() {
+    const form = document.getElementById('residency-inquiry-form');
+    const formMessage = document.getElementById('residency-form-message');
+    const messageText = formMessage?.querySelector('p');
+    const submitButton = form?.querySelector('button[type="submit"]');
+    const detailsSection = document.getElementById('residency-details-section');
+    const toggleIcon = document.getElementById('toggle-residency-icon');
     
     if (!form || !formMessage || !messageText) return;
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (!form || !formMessage || !messageText) {
+        return false;
+      }
     
     // Disable submit button to prevent double submissions
     if (submitButton) {
@@ -301,6 +313,18 @@ import { formspreeUrls } from '../config/formspree.js';
         formMessage?.classList.add('hidden');
       }, 8000);
     }
-  });
+      return false;
+    });
+    }
+    
+    initResidencyFormSubmission();
+  }
+  
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initResidencyForm);
+  } else {
+    initResidencyForm();
+  }
 </script>
 

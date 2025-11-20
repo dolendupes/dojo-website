@@ -99,7 +99,7 @@ const visibleEvents = eventTypes.filter(event => event.visible);
               Our event team brings experience from premier local venues, coordinating details and logistics so you can focus on your guests.
             </p>
             <p class="text-dojo-gray">
-              Our creative group brings fresh ideas and innovative approaches. We have great connections to other chefs, creatives, restaurants, and caterers, allowing us to create unique experiences that exceed expectations.
+              Our creative group brings fresh ideas and innovative approaches, allowing us to create unique experiences that exceed expectations.
             </p>
           </div>
           
@@ -109,7 +109,7 @@ const visibleEvents = eventTypes.filter(event => event.visible);
               Our chef brings exceptional culinary talent to events, from intimate tastings to larger gatherings. He has led kitchens at established restaurants and brings that expertise to every experience.
             </p>
             <p class="text-dojo-gray">
-              We have strong connections with other talented chefs, restaurants, and caterers, ensuring we can deliver exactly what your event requires.
+              We work with talented colleagues from his network, ensuring we can deliver exactly what your event requires.
             </p>
           </div>
         </div>
@@ -149,9 +149,9 @@ const visibleEvents = eventTypes.filter(event => event.visible);
         </p>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="flex flex-wrap justify-center gap-8">
         {visibleEvents.map((event) => (
-          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)]">
             <div class="h-48 bg-dojo-gray flex items-center justify-center text-white">
               <span>{event.category}</span>
             </div>
@@ -202,7 +202,7 @@ const visibleEvents = eventTypes.filter(event => event.visible);
   </section>
 
   <!-- Location Section -->
-  <section id="location" class="py-20 bg-white">
+  <section id="location" class="py-20 bg-dojo-light">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="font-inter font-bold text-4xl mb-4">Location</h2>

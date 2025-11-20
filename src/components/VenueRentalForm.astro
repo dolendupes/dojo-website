@@ -3,7 +3,7 @@
 import { formspreeUrls } from '../config/formspree.js';
 ---
 
-<form id="venue-rental-form" action={formspreeUrls.events} method="POST" class="max-w-xl mx-auto">
+<form id="venue-rental-form" class="max-w-xl mx-auto">
   <!-- Intent Selector -->
   <div class="mb-8">
     <label for="venue-intent" class="block text-sm font-medium text-white mb-3">
@@ -207,32 +207,50 @@ import { formspreeUrls } from '../config/formspree.js';
 </form>
 
 <script define:vars={{ formspreeUrl: formspreeUrls.events }}>
-  // Toggle details section
-  const toggleButton = document.getElementById('toggle-details');
-  const detailsSection = document.getElementById('details-section');
-  const toggleIcon = document.getElementById('toggle-icon');
-  
-  toggleButton?.addEventListener('click', () => {
-    const isHidden = detailsSection?.classList.contains('hidden');
-    if (isHidden) {
-      detailsSection?.classList.remove('hidden');
-      toggleIcon?.classList.add('rotate-180');
-    } else {
-      detailsSection?.classList.add('hidden');
-      toggleIcon?.classList.remove('rotate-180');
+  // Ensure DOM is ready
+  function initVenueForm() {
+    // Toggle details section
+    const toggleButton = document.getElementById('toggle-details');
+    const detailsSection = document.getElementById('details-section');
+    const toggleIcon = document.getElementById('toggle-icon');
+    
+    if (toggleButton && detailsSection && toggleIcon) {
+      toggleButton.addEventListener('click', () => {
+        const isHidden = detailsSection.classList.contains('hidden');
+        if (isHidden) {
+          detailsSection.classList.remove('hidden');
+          toggleIcon.classList.add('rotate-180');
+        } else {
+          detailsSection.classList.add('hidden');
+          toggleIcon.classList.remove('rotate-180');
+        }
+      });
     }
-  });
+  }
+  
+  // Run on DOMContentLoaded or immediately if already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVenueForm);
+  } else {
+    initVenueForm();
+  }
   
   // Form submission
-  const form = document.getElementById('venue-rental-form') as HTMLFormElement;
-  const formMessage = document.getElementById('venue-form-message');
-  const messageText = formMessage?.querySelector('p');
-  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
-  
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  function initFormSubmission() {
+    const form = document.getElementById('venue-rental-form');
+    const formMessage = document.getElementById('venue-form-message');
+    const messageText = formMessage?.querySelector('p');
+    const submitButton = form?.querySelector('button[type="submit"]');
+    const detailsSection = document.getElementById('details-section');
+    const toggleIcon = document.getElementById('toggle-icon');
     
     if (!form || !formMessage || !messageText) return;
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (!form || !formMessage || !messageText) return;
     
     // Disable submit button to prevent double submissions
     if (submitButton) {
@@ -265,8 +283,8 @@ import { formspreeUrls } from '../config/formspree.js';
         form.reset();
         
         // Collapse details section
-        detailsSection?.classList.add('hidden');
-        toggleIcon?.classList.remove('rotate-180');
+        if (detailsSection) detailsSection.classList.add('hidden');
+        if (toggleIcon) toggleIcon.classList.remove('rotate-180');
         
         // Scroll to message
         formMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -299,5 +317,14 @@ import { formspreeUrls } from '../config/formspree.js';
         formMessage?.classList.add('hidden');
       }, 8000);
     }
-  });
+      return false;
+    });
+  }
+  
+  // Initialize form submission on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFormSubmission);
+  } else {
+    initFormSubmission();
+  }
 </script>

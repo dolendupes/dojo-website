@@ -3,7 +3,7 @@
 import { formspreeUrls } from '../config/formspree.js';
 ---
 
-<form id="inquiry-form" action={formspreeUrls.inquiry} method="POST" class="max-w-xl mx-auto">
+<form id="inquiry-form" class="max-w-xl mx-auto">
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
     <div>
       <label for="first-name" class="block text-sm font-medium text-white">
@@ -91,15 +91,19 @@ import { formspreeUrls } from '../config/formspree.js';
 </form>
 
 <script define:vars={{ formspreeUrl: formspreeUrls.inquiry }}>
-  const form = document.getElementById('inquiry-form') as HTMLFormElement;
-  const formMessage = document.getElementById('form-message');
-  const messageText = formMessage?.querySelector('p');
-  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
-  
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  function initInquiryForm() {
+    const form = document.getElementById('inquiry-form');
+    const formMessage = document.getElementById('form-message');
+    const messageText = formMessage?.querySelector('p');
+    const submitButton = form?.querySelector('button[type="submit"]');
     
     if (!form || !formMessage || !messageText) return;
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    
+      if (!form || !formMessage || !messageText) return;
     
     // Disable submit button to prevent double submissions
     if (submitButton) {
@@ -162,5 +166,13 @@ import { formspreeUrls } from '../config/formspree.js';
         formMessage?.classList.add('hidden');
       }, 8000);
     }
-  });
+    });
+  }
+  
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInquiryForm);
+  } else {
+    initInquiryForm();
+  }
 </script>
